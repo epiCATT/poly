@@ -7,7 +7,7 @@ public class TowerAppearance : MonoBehaviour {
     #region Declaration
 
     // Static Data
-
+    private Renderer renderer;
 
     // Dynamic Data
     private Color controllerColor;
@@ -17,9 +17,16 @@ public class TowerAppearance : MonoBehaviour {
 
     #endregion
 
+    // AWAKE
+    void Awake()
+    {
+        InitializeData();
+    }
+
     // START
     void Start () {
         InitializeScripts();
+        ActualizeBody();
 	}
 	
 
@@ -35,7 +42,7 @@ public class TowerAppearance : MonoBehaviour {
         controllerColor = Data.ControllerData.Color;
         
         // Change tower's color
-        GetComponent<Renderer>().material.color = controllerColor;
+        renderer.material.color = controllerColor;
 
         // Change Etiquette Color
         //UnitText.color = controllerColor;
@@ -52,6 +59,11 @@ public class TowerAppearance : MonoBehaviour {
 
 
     #region Subfunctions
+
+    private void InitializeData()
+    {
+        renderer = GetComponent<Renderer>();
+    }
 
     private void InitializeScripts()
     {

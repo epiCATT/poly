@@ -21,7 +21,7 @@ public class UnitSpawner : MonoBehaviour {
     // START
     private void Start()
     {
-        spawnLocation = GetComponent<Transform>().parent;
+        spawnLocation = GetComponent<Transform>();
     }
 
     /// <summary>

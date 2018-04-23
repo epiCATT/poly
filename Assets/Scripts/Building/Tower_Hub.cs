@@ -15,12 +15,18 @@ public class Tower_Hub : MonoBehaviour {
 
     // Subscripts
     private TowerData data;
-    private TowerBehavior Beheavior;
-    private TowerAppearance Appearance;
-    private TowerUI UI;
+    //private TowerBehavior Beheavior;
+    //private TowerAppearance Appearance;
+    //private TowerUI UI;
     private UnitSpawner Spawner;
 
     #endregion
+
+    // AWAKE
+    private void Awake()
+    {
+        //InitializeData();
+    }
 
 
     // START
@@ -117,9 +123,9 @@ public class Tower_Hub : MonoBehaviour {
     private void InitializeScripts()
     {
         data = GetComponent<TowerData>();
-        Beheavior = GetComponent<TowerBehavior>();
-        Appearance = GetComponent<TowerAppearance>();
-        UI = GetComponentInChildren<TowerUI>();
+        //Beheavior = GetComponent<TowerBehavior>();
+        //Appearance = GetComponent<TowerAppearance>();
+        //UI = GetComponentInChildren<TowerUI>();
         Spawner = GetComponent<UnitSpawner>();
     }
     

@@ -25,9 +25,17 @@ public class UnitPicker : MonoBehaviour {
     #endregion
 
 
+    // AWAKE
+    private void Awake()
+    {
+        
+    }
+
+
     // START
     void Start() {
-        InitializeData();
+        InitializeScripts();
+        InitializeLocation();
     }
 
 
@@ -102,7 +110,7 @@ public class UnitPicker : MonoBehaviour {
         Harmonizer = GetComponentInParent<Harmonizer>();
     }
 
-    private void InitializeData()
+    private void InitializeLocation()
     {
         location = Data.Location;
     }

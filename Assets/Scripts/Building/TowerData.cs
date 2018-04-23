@@ -35,11 +35,17 @@ public class TowerData : MonoBehaviour {
         Lab
     }
 
+    // AWAKE
+    private void Awake()
+    {
+        InitializeData();
+    }
+
 
     // START
-    void Awake() {
-        InitializeData();
-        InitializePlayerInfo();
+    void Start() {
+        InitializeScripts();
+        InitializeInfo();
     }
 	
 
@@ -66,9 +72,6 @@ public class TowerData : MonoBehaviour {
     public void ActualizeController()
     {
         controllerData = Controller.GetComponent<PlayerData>();
-
-        Appearance.ActualizeBody();
-
         // TO DO : Change Etiquette visibility.
     }
 
@@ -107,6 +110,7 @@ public class TowerData : MonoBehaviour {
     private void InitializeData()
     {
         controller = InitialController;
+        ActualizeController();
         population = StartingPopulation;
         type = StartingType;
         level = StartingLevel;
@@ -115,13 +119,12 @@ public class TowerData : MonoBehaviour {
 
     private void InitializeScripts()
     {
-        Appearance = GetComponent<TowerAppearance>();
+        Appearance = GetComponentInChildren<TowerAppearance>();
         UI = GetComponentInChildren<TowerUI>();
     }
 
-    private void InitializePlayerInfo()
+    private void InitializeInfo()
     {
-        ActualizeController();
         controllerData.AddUnits(population);
         if (StartingType == BuildingType.Lab)
             controllerData.GetLab();

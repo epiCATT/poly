@@ -8,7 +8,7 @@ public class TowerUI : MonoBehaviour {
     #region Declaration
 
     // Static Data
-    private Text PopulationText;
+    private Text populationText;
 
     // Dynamic Data
 
@@ -18,10 +18,18 @@ public class TowerUI : MonoBehaviour {
 
     #endregion
 
+
+    // AWAKE
+    void Awake()
+    {
+        InitializeData();
+    }
+
+
     // START
     void Start () {
         InitializeScripts();
-        InitializeData();
+        ActualizeUI();
 	}
 	
 
@@ -34,7 +42,8 @@ public class TowerUI : MonoBehaviour {
 
     public void ActualizeUI()
     {
-        PopulationText.text = (Mathf.RoundToInt(Data.Population)).ToString();
+        int population = Mathf.RoundToInt(Data.Population);
+        populationText.text = population.ToString();
     }
 
     #endregion
@@ -42,14 +51,14 @@ public class TowerUI : MonoBehaviour {
 
     #region Subfunctions
 
+    private void InitializeData()
+    {
+        populationText = GetComponentInChildren<Text>();
+    }
+
     private void InitializeScripts()
     {
         Data = GetComponentInParent<TowerData>();
-    }
-
-    private void InitializeData()
-    {
-        PopulationText = GetComponent<Text>();
     }
 
     #endregion

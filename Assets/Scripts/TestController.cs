@@ -69,7 +69,7 @@ public class TestController : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            towerHub2.Spawn(Tower2.transform);
+            towerHub2.Spawn(Tower1.transform);
         }
     }
 }
