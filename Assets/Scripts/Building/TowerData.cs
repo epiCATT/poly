@@ -1,0 +1,131 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TowerData : MonoBehaviour {
+
+    #region Declaration
+
+    // Static Data
+    public string towerID;
+    public GameObject InitialController;
+    public int StartingPopulation;
+    public BuildingType StartingType;
+    public int StartingLevel;
+
+    // Dynamic Data
+    private GameObject controller;
+    private PlayerData controllerData;
+    private float population;
+    private BuildingType type;
+    private int level;
+    private Transform location;
+
+    // Subscripts
+    private TowerAppearance Appearance;
+    private TowerUI UI;
+
+    #endregion
+
+
+    public enum BuildingType
+    {
+        Generator,
+        Firewall,
+        Lab
+    }
+
+
+    // START
+    void Awake() {
+        InitializeData();
+        InitializePlayerInfo();
+    }
+	
+
+	// UPDATE
+	void Update () {
+	}
+
+
+    #region Getters
+
+    public GameObject Controller { get { return controller; } }
+    public PlayerData ControllerData { get { return controllerData; } }
+    public float Population { get { return population; } }
+    public BuildingType Type { get { return type; } }
+    public int Level { get { return level; } }
+    public Transform Location { get { return location; } }
+
+    #endregion Getters
+
+
+    #region Methods
+
+
+    public void ActualizeController()
+    {
+        controllerData = Controller.GetComponent<PlayerData>();
+
+        Appearance.ActualizeBody();
+
+        // TO DO : Change Etiquette visibility.
+    }
+
+    public void AddUnits(float nOfUnit, bool affectPlayer = true)
+    {
+        population += nOfUnit;
+        UI.ActualizeUI();
+
+        if (affectPlayer)
+            controllerData.AddUnits(nOfUnit);
+    }
+
+    public void SetController(GameObject player)
+    {
+        controller = player;
+        ActualizeController();
+    }
+
+    public void SetType(BuildingType newType)
+    {
+        type = newType;
+        Appearance.ActualizeBody();
+    }
+
+    public void SetLevel(int newLevel)
+    {
+        level = newLevel;
+        Appearance.ActualizeBody();
+    }
+
+    #endregion
+
+
+    #region Subfunctions
+
+    private void InitializeData()
+    {
+        controller = InitialController;
+        population = StartingPopulation;
+        type = StartingType;
+        level = StartingLevel;
+        location = GetComponent<Transform>();
+    }
+
+    private void InitializeScripts()
+    {
+        Appearance = GetComponent<TowerAppearance>();
+        UI = GetComponentInChildren<TowerUI>();
+    }
+
+    private void InitializePlayerInfo()
+    {
+        ActualizeController();
+        controllerData.AddUnits(population);
+        if (StartingType == BuildingType.Lab)
+            controllerData.GetLab();
+    }
+
+    #endregion
+}
