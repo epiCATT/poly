@@ -16,7 +16,7 @@ public class Tower_Hub : MonoBehaviour {
     // Subscripts
     private TowerData data;
     //private TowerBehavior Beheavior;
-    //private TowerAppearance Appearance;
+    private TowerAppearance Appearance;
     //private TowerUI UI;
     private UnitSpawner Spawner;
 
@@ -56,6 +56,7 @@ public class Tower_Hub : MonoBehaviour {
             data.ControllerData.LooseLab();
 
         data.SetController(player);
+        Appearance.ActualizeBody();
 
         // TO DO : Particle effect
 
@@ -124,7 +125,7 @@ public class Tower_Hub : MonoBehaviour {
     {
         data = GetComponent<TowerData>();
         //Beheavior = GetComponent<TowerBehavior>();
-        //Appearance = GetComponent<TowerAppearance>();
+        Appearance = GetComponentInChildren<TowerAppearance>();
         //UI = GetComponentInChildren<TowerUI>();
         Spawner = GetComponent<UnitSpawner>();
     }
