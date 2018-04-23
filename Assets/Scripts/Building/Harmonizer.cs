@@ -18,11 +18,17 @@ public class Harmonizer : MonoBehaviour {
 
     #endregion
 
+    // AWAKE
+    void Awake()
+    {
+        InitializeData();
+    }
+
 
     // START
     void Start()
     {
-        InitializeData();
+        InitializeScripts();
     }
 
 
