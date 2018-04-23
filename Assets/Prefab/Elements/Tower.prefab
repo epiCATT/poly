@@ -210,6 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8db012021c261c4eaec55f34abcfdbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BaseGenerationTime: 3
+  GeneratorCap: 50
 --- !u!114 &114451188038109694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -317,7 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerID: 
   InitialController: {fileID: 0}
-  StartingPopulation: 0
+  StartingPopulation: 100
   StartingType: 0
   StartingLevel: 0
 --- !u!136 &136828539742050224

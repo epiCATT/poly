@@ -8,30 +8,38 @@ public class TowerBehavior : MonoBehaviour {
     #region Declaration
 
     // Static Data
-
+    public float BaseGenerationTime;
+    public float GeneratorCap;
 
     // Dynamic Data
-
+    private float time;
 
     // Subscripts
-
+    private TowerData Data;
 
     #endregion
 
-    
+
+    // AWAKE
+    void Awake()
+    {
+        InitializeData();
+    }
+
+
     // START
     void Start () {
+        InitializeScripts();
     }
 	
 
 	// UPDATE
 	void Update () {
-        /*
+        TowerData.BuildingType type = Data.Type;
         if (type == TowerData.BuildingType.Generator)
-            // TO DO : GROW
+            Grow(Time.deltaTime);
         else if (type == TowerData.BuildingType.Firewall)
-            // TO DO : SHOOT
-        */
+            throw new System.NotImplementedException();
     }
 
 
@@ -44,6 +52,36 @@ public class TowerBehavior : MonoBehaviour {
 
     #region Subfunctions
 
+    private void InitializeData()
+    {
+        time = 0;
+    }
+
+    private void InitializeScripts()
+    {
+        Data = GetComponent<TowerData>();
+    }
+
+
+    private void Grow(float deltatime)
+    {
+        if (Data.Population < GeneratorCap)
+        {
+            time += deltatime;
+
+            float timeNeeded = BaseGenerationTime / (Data.Level+1);
+
+            while (time >= timeNeeded)
+            {
+                Data.AddUnits(1);
+                time -= timeNeeded;
+            }
+        }
+
+        else
+            time = 0;
+        
+    }
 
     #endregion
 }
