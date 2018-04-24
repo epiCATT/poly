@@ -50,19 +50,19 @@ public class UI : MonoBehaviour {
 	#region Methods
     public void totale()
 	{
-		Spawner.Move(TargetTower.transform,100);
+		Spawner.Move(TargetTower.transform, 1f);
 	}
 	public void troisq()
 	{
-		Spawner.Move(TargetTower.transform,75);
+		Spawner.Move(TargetTower.transform, 0.75f);
 	}
 	public void moitier()
 	{
-		Spawner.Move(TargetTower.transform,50);
+		Spawner.Move(TargetTower.transform, 0.5f);
 	}
 	public void unq()
 	{
-        Spawner.Move(TargetTower.transform,25);
+        Spawner.Move(TargetTower.transform, 0.25f);
 	}	
 	public void Labo()
 	{

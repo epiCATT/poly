@@ -76,7 +76,7 @@ public class UnitSpawner : MonoBehaviour {
         {
             isMoving = true;
             unitSpawned = 0;
-            unitToSpawn = (int)(Data.Population * proportion / 100);
+            unitToSpawn = (int)(Data.Population * proportion);
             initialController = Data.Controller;
             selectedTarget = target;
         }
