@@ -10,31 +10,31 @@ public class Harmonizer : MonoBehaviour {
 
 
     // Dynamic Data
+    private float HarmonizationTime;
     private bool onCountdown;
     private float timeTillAttacked;
 
     // Subscripts
+    private _TowerRules Rules;
     private TowerData Data;
 
     #endregion
 
     // AWAKE
-    void Awake()
-    {
+    void Awake() {
         InitializeData();
     }
 
 
     // START
-    void Start()
-    {
+    void Start() {
         InitializeScripts();
+        InitializeRules();
     }
 
 
     // UPDATE
-    void Update()
-    {
+    void Update() {
         if (onCountdown)
             ManageCountdown(Time.deltaTime);
     }
@@ -70,12 +70,18 @@ public class Harmonizer : MonoBehaviour {
     private void InitializeScripts()
     {
         Data = GetComponent<TowerData>();
+        Rules = GetComponentInParent<_TowerRules>();
+    }
+
+    private void InitializeRules()
+    {
+        HarmonizationTime = Rules.HamonizationTime;
     }
 
     private void ManageCountdown(float deltaTime)
     {
         timeTillAttacked += deltaTime;
-        if (timeTillAttacked >= 5)
+        if (timeTillAttacked >= HarmonizationTime)
         {
             onCountdown = false;
             timeTillAttacked = 0;

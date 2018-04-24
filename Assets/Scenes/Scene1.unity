@@ -833,12 +833,12 @@ Prefab:
     - target: {fileID: 114296897828583024, guid: 1231c34ba95be1042b8c78113abee37d,
         type: 2}
       propertyPath: BaseGenerationTime
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114296897828583024, guid: 1231c34ba95be1042b8c78113abee37d,
         type: 2}
       propertyPath: GeneratorCap
-      value: 60
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -888,7 +888,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 607ac9d063c4e65409accf2e6597eda9, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &865405840 stripped
@@ -911,6 +912,17 @@ MonoBehaviour:
   Player2: {fileID: 1125225645}
   Tower1: {fileID: 2077561890}
   Tower2: {fileID: 1420250053}
+--- !u!114 &865405842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 865405840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a368ead34ac2445ab2faf9d44d4410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &892920330 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4504829755621970, guid: 607ac9d063c4e65409accf2e6597eda9,
@@ -1171,27 +1183,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1826249480292880, guid: 83e2f5f7e3d9ba844ac224fadd6ce18e,
     type: 2}
   m_PrefabInternal: {fileID: 1678058027}
---- !u!1 &1143104929 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1701710398869066, guid: 1231c34ba95be1042b8c78113abee37d,
-    type: 2}
-  m_PrefabInternal: {fileID: 530121170}
---- !u!114 &1143104930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1143104929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e16e7ab2037f7104e8d5dd7c26aa8902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BaseGenerationTime: 0
-  GeneratorCap: 0
-  FirewallRange: 0
-  FirewallRateOfFire: 0
-  TimeBetweenSpawn: 0
 --- !u!1 &1420250053 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1505459990257732, guid: eb49007bc2ab57e4cafff91f59d7980d,

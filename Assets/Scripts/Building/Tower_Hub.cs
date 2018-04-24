@@ -109,11 +109,7 @@ public class Tower_Hub : MonoBehaviour {
 
     public void Spawn(Transform target)
     {
-        if (data.Population >= 1)
-        {
-            Spawner.Spawn(target, Data.Controller);
-            data.AddUnits(-1, false);
-        }
+        Spawner.MoveOne(target);
     }
 
     #endregion Methods
