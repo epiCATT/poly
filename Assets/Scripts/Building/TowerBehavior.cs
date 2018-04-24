@@ -12,6 +12,12 @@ public class TowerBehavior : MonoBehaviour {
     // Dynamic Data
     private float BaseGenerationTime;
     private float GeneratorCap;
+    private float TinkerTime;
+    private float ConvertionCost;
+    private float[] UpgradeCost;
+    private bool isOperational;
+    private int newLevel;
+    private TowerData.BuildingType newType;
     private float time;
 
     // Subscripts
@@ -36,11 +42,10 @@ public class TowerBehavior : MonoBehaviour {
 
 	// UPDATE
 	void Update () {
-        TowerData.BuildingType type = Data.Type;
-        if (type == TowerData.BuildingType.Generator)
-            Grow(Time.deltaTime);
-        else if (type == TowerData.BuildingType.Firewall)
-            throw new System.NotImplementedException();
+        if (isOperational)
+            DoYourJob();
+        else
+            Tinker();
     }
 
 
@@ -56,6 +61,7 @@ public class TowerBehavior : MonoBehaviour {
     private void InitializeData()
     {
         time = 0;
+        isOperational = true;
     }
 
     private void InitializeScripts()
@@ -68,14 +74,78 @@ public class TowerBehavior : MonoBehaviour {
     {
         BaseGenerationTime = Rules.BaseGenerationTime;
         GeneratorCap = Rules.GeneratorCap;
+        TinkerTime = Rules.TinkerTime;
+        ConvertionCost = Rules.ConvertionCost;
+        UpgradeCost = new float[2];
+        UpgradeCost[0] = Rules.UpgradeCost1;
+        UpgradeCost[1] = Rules.UpgradeCost2;
     }
 
-    private void Grow(float deltatime)
+    private void DoYourJob()
+    {
+        TowerData.BuildingType type = Data.Type;
+        if (type == TowerData.BuildingType.Generator)
+            Grow();
+        else if (type == TowerData.BuildingType.Firewall)
+            throw new System.NotImplementedException();
+    }
+
+    public void LevelUP()
+    {
+        int currentLevel = Data.Level;
+        float cost = UpgradeCost[currentLevel];
+
+        if (currentLevel < 2 && Data.Population >= cost)
+        {
+            Data.AddUnits(-cost);
+            isOperational = false;
+            newLevel = currentLevel + 1;
+            newType = Data.Type;
+
+            // TO DO : Start Particles
+        }
+    }
+
+    public void ChangeType(TowerData.BuildingType newType)
+    {
+        TowerData.BuildingType currentType = Data.Type;
+
+        if (newType != currentType && Data.Population >= ConvertionCost)
+        {
+            if (currentType == TowerData.BuildingType.Lab)
+                Data.ControllerData.LooseLab();
+
+            Data.AddUnits(-ConvertionCost);
+            isOperational = false;
+            newLevel = 0;
+            this.newType = newType;
+
+            // TO DO : Start Particles
+        }
+    }
+
+    private void Tinker()
+    {
+        time += Time.deltaTime;
+
+        if (time >= TinkerTime)
+        {
+            Data.SetLevel(newLevel);
+            Data.SetType(newType);
+            time = 0;
+
+            if (newType == TowerData.BuildingType.Lab)
+                Data.ControllerData.GetLab();
+
+            // TO DO :  Stop Particles & Play Animation
+        }
+    }
+
+    private void Grow()
     {
         if (Data.Population < GeneratorCap)
         {
-            time += deltatime;
-
+            time += Time.deltaTime;
             float timeNeeded = BaseGenerationTime / (Data.Level+1);
 
             while (time >= timeNeeded)

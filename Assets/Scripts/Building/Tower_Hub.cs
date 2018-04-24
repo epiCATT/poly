@@ -14,10 +14,9 @@ public class Tower_Hub : MonoBehaviour {
 
 
     // Subscripts
+    private _TowerRules Rules;
     private TowerData data;
-    //private TowerBehavior Beheavior;
     private TowerAppearance Appearance;
-    //private TowerUI UI;
     private UnitSpawner Spawner;
 
     #endregion
@@ -32,6 +31,7 @@ public class Tower_Hub : MonoBehaviour {
     // START
     void Start() {
         InitializeScripts();
+        InitializeRules();
     }
 
 
@@ -90,7 +90,7 @@ public class Tower_Hub : MonoBehaviour {
 
         if (level < 2)
         {
-            // TO DO : Particle effect
+            // TO DO : Animation & Particles
 
             data.SetLevel(level + 1);
         }
@@ -119,11 +119,15 @@ public class Tower_Hub : MonoBehaviour {
     
     private void InitializeScripts()
     {
+        Rules = GetComponentInParent<_TowerRules>();
         data = GetComponent<TowerData>();
-        //Beheavior = GetComponent<TowerBehavior>();
         Appearance = GetComponentInChildren<TowerAppearance>();
-        //UI = GetComponentInChildren<TowerUI>();
         Spawner = GetComponent<UnitSpawner>();
+    }
+
+    private void InitializeRules()
+    {
+
     }
     
     #endregion
