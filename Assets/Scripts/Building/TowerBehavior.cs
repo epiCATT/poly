@@ -8,21 +8,21 @@ public class TowerBehavior : MonoBehaviour {
     #region Declaration
 
     // Static Data
-    public float BaseGenerationTime;
-    public float GeneratorCap;
 
     // Dynamic Data
+    private float BaseGenerationTime;
+    private float GeneratorCap;
     private float time;
 
     // Subscripts
+    private _TowerRules Rules;
     private TowerData Data;
 
     #endregion
 
 
     // AWAKE
-    void Awake()
-    {
+    void Awake() {
         InitializeData();
     }
 
@@ -30,6 +30,7 @@ public class TowerBehavior : MonoBehaviour {
     // START
     void Start () {
         InitializeScripts();
+        InitializeRules();
     }
 	
 
@@ -59,9 +60,15 @@ public class TowerBehavior : MonoBehaviour {
 
     private void InitializeScripts()
     {
+        Rules = GetComponentInParent<_TowerRules>();
         Data = GetComponent<TowerData>();
     }
 
+    private void InitializeRules()
+    {
+        BaseGenerationTime = Rules.BaseGenerationTime;
+        GeneratorCap = Rules.GeneratorCap;
+    }
 
     private void Grow(float deltatime)
     {
@@ -77,10 +84,8 @@ public class TowerBehavior : MonoBehaviour {
                 time -= timeNeeded;
             }
         }
-
         else
             time = 0;
-        
     }
 
     #endregion
