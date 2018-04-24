@@ -15,33 +15,33 @@ public class Tower_Hub : MonoBehaviour {
 
     // Subscripts
     private _TowerRules Rules;
-    private TowerData data;
+    private TowerData Data;
+    private TowerBehavior TBehavior;
     private TowerAppearance Appearance;
     private UnitSpawner Spawner;
 
     #endregion
 
+
     // AWAKE
-    private void Awake()
-    {
+    private void Awake() {
         //InitializeData();
     }
-
 
     // START
     void Start() {
         InitializeScripts();
-        InitializeRules();
+        //InitializeRules();
     }
-
 
     // UPDATE
     void Update() {
     }
 
+
     #region Getters
 
-    public TowerData Data { get { return data; } }
+    public TowerData GetData { get { return Data; } }
 
     #endregion
 
@@ -50,61 +50,28 @@ public class Tower_Hub : MonoBehaviour {
 
     public void ChangeController(GameObject player)
     {
-        bool isLab = (data.Type == TowerData.BuildingType.Lab);
+        bool isLab = (Data.Type == TowerData.BuildingType.Lab);
 
         if (isLab)
-            data.ControllerData.LooseLab();
+            Data.ControllerData.LooseLab();
 
-        data.SetController(player);
+        Data.SetController(player);
         Appearance.ActualizeBody();
 
         // TO DO : Particle effect
 
         if (isLab)
-            data.ControllerData.GetLab();
+            Data.ControllerData.GetLab();
     }
 
     public void ChangeType(TowerData.BuildingType newType)
     {
-        // TO DO : Unit Cost
-        TowerData.BuildingType type = data.Type;
-
-        if (newType != type)
-        {
-            if (type == TowerData.BuildingType.Lab)
-                data.ControllerData.LooseLab();
-            else if (newType == TowerData.BuildingType.Lab)
-                data.ControllerData.GetLab();
-
-            // TO DO : Animation & Particles
-
-            data.SetType(newType);
-        }
+        TBehavior.ChangeType(newType);
     }
 
     public void LevelUP()
     {
-        // TO DO : Unit Cost
-
-        int level = data.Level;
-
-        if (level < 2)
-        {
-            // TO DO : Animation & Particles
-
-            data.SetLevel(level + 1);
-        }
-    }
-
-    public void Destroy()
-    {
-
-        if (data.Level != 0)
-        {
-            // TO DO : Particle effect
-
-            data.SetLevel(0);
-        }
+        TBehavior.LevelUP();
     }
 
     public void Spawn(Transform target)
@@ -112,23 +79,29 @@ public class Tower_Hub : MonoBehaviour {
         Spawner.MoveOne(target);
     }
 
+    public void Move(Transform target, float proportion)
+    {
+        Spawner.Move(target, proportion);
+    }
+
     #endregion Methods
 
 
     #region Subfunctions
-    
+
+    //private void InitializeData() { }
+
     private void InitializeScripts()
     {
         Rules = GetComponentInParent<_TowerRules>();
-        data = GetComponent<TowerData>();
+        Data = GetComponent<TowerData>();
+        TBehavior = GetComponent<TowerBehavior>();
         Appearance = GetComponentInChildren<TowerAppearance>();
         Spawner = GetComponent<UnitSpawner>();
     }
 
-    private void InitializeRules()
-    {
-
-    }
+    //private void InitializeRules() { }
     
     #endregion
+
 }
