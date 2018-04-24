@@ -28,7 +28,7 @@ public class UI : MonoBehaviour {
 
     // START
     void Start() {
-        InitializeScript();
+        InitializeScripts();
     }
 
     // UPDATE
@@ -54,15 +54,15 @@ public class UI : MonoBehaviour {
 	}
 	public void troisq()
 	{
-		Spawner.move(TargetTower.transform,75);
+		Spawner.Move(TargetTower.transform,75);
 	}
 	public void moitier()
 	{
-		Spawner.move(TargetTower.transform,50);
+		Spawner.Move(TargetTower.transform,50);
 	}
 	public void unq()
 	{
-        Spawner.move(TargetTower.transform,25);
+        Spawner.Move(TargetTower.transform,25);
 	}	
 	public void Labo()
 	{
