@@ -15,6 +15,7 @@ public class TowerAppearance : MonoBehaviour {
     public Material Material3;
     private Renderer mrenderer;
     private MeshFilter mfilter;
+    private MeshCollider mcollider;
 
     // Dynamic Data
     private Color controllerColor;
@@ -49,6 +50,7 @@ public class TowerAppearance : MonoBehaviour {
         UpdateModel();
         UpdateMaterial();
         UpdateColor();
+        print("Body Updated.");
     }
 
     #endregion
@@ -60,6 +62,7 @@ public class TowerAppearance : MonoBehaviour {
     {
         mrenderer = GetComponent<Renderer>();
         mfilter = GetComponent<MeshFilter>();
+        mcollider = GetComponent<MeshCollider>();
     }
 
     private void InitializeScripts()
@@ -73,12 +76,15 @@ public class TowerAppearance : MonoBehaviour {
         {
             case TowerData.BuildingType.Generator:
                 mfilter.mesh = GeneratorModel;
+                mcollider.sharedMesh = GeneratorModel;
                 break;
             case TowerData.BuildingType.Firewall:
                 mfilter.mesh = FirewallModel;
+                mcollider.sharedMesh = FirewallModel;
                 break;
             case TowerData.BuildingType.Lab:
                 mfilter.mesh = LabModel;
+                mcollider.sharedMesh = LabModel;
                 break;
             default:
                 throw new System.ArgumentException("Type not Initialized.");
