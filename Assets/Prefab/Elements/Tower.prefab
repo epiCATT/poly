@@ -167,6 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f702ff21855e8d54f932f6a1064e4b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LabModel: {fileID: 4300000, guid: 8e406e8a50248f5499b007168c8d1ce1, type: 3}
+  GeneratorModel: {fileID: 4300000, guid: 5191956bd5bb6014999f81129cf153e3, type: 3}
+  FirewallModel: {fileID: 4300000, guid: a12e8021ef84d494cb3e6a9ce1685af0, type: 3}
+  Material1: {fileID: 2100000, guid: df7cb11cf28c7bb43a752efb4a386a45, type: 2}
+  Material2: {fileID: 2100000, guid: 189f22de75f7e6d4d8195c588ae3df6f, type: 2}
+  Material3: {fileID: 2100000, guid: 34d887a7e60661245beb4f8f9e8684a6, type: 2}
 --- !u!114 &114123907528277790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,7 +204,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
+  m_DynamicPixelsPerUnit: 3
 --- !u!114 &114199778653070160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,8 +216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8db012021c261c4eaec55f34abcfdbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseGenerationTime: 3
-  GeneratorCap: 50
 --- !u!114 &114451188038109694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -283,7 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1199984ee12af84aa95ae76b27c65b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitPrefab: {fileID: 1960383358179072, guid: 1ec5458712eaecb4ea0bc7d94f001d22, type: 2}
 --- !u!114 &114749101672445622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -387,7 +390,7 @@ RectTransform:
   m_GameObject: {fileID: 1144678921632552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 224304246272947670}
   m_Father: {fileID: 4904140810663936}
@@ -396,5 +399,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 30, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
