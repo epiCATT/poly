@@ -132,6 +132,7 @@ public class TowerBehavior : MonoBehaviour {
         {
             Data.SetLevel(newLevel);
             Data.SetType(newType);
+            isOperational = true;
             time = 0;
 
             if (newType == TowerData.BuildingType.Lab)

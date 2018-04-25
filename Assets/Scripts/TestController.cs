@@ -24,8 +24,8 @@ public class TestController : MonoBehaviour {
         playerData2 = Player2.GetComponent<PlayerData>();
         towerHub1 = Tower1.GetComponent<Tower_Hub>();
         towerHub2 = Tower2.GetComponent<Tower_Hub>();
-        towerData1 = towerHub1.Data;
-        towerData2 = towerHub2.Data;
+        towerData1 = towerHub1.GetData;
+        towerData2 = towerHub2.GetData;
     }
 
     // Update is called once per frame

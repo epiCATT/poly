@@ -51,10 +51,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16e7ab2037f7104e8d5dd7c26aa8902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HamonizationTime: 5
   BaseGenerationTime: 3
-  GeneratorCap: 50
+  GeneratorCap: 100
   FirewallRange: 0
   FirewallRateOfFire: 0
-  TimeBetweenSpawn: 0.3
+  TinkerTime: 3
+  ConvertionCost: 30
+  UpgradeCost1: 40
+  UpgradeCost2: 50
+  HamonizationTime: 5
+  TimeBetweenSpawn: 0.2
   UnitPrefab: {fileID: 1960383358179072, guid: 1ec5458712eaecb4ea0bc7d94f001d22, type: 2}

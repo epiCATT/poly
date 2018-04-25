@@ -16,7 +16,6 @@ public class UI : MonoBehaviour {
 
     // Subscripts
     private Tower_Hub Hub;
-	private UnitSpawner Spawner;
 
     #endregion
 
@@ -48,38 +47,42 @@ public class UI : MonoBehaviour {
 
 
 	#region Methods
-    public void totale()
+
+    public void Move100()
 	{
-		Spawner.Move(TargetTower.transform, 1f);
+		Hub.Move(TargetTower.transform, 1f);
 	}
-	public void troisq()
+	public void Move75()
 	{
-		Spawner.Move(TargetTower.transform, 0.75f);
+		Hub.Move(TargetTower.transform, 0.75f);
 	}
-	public void moitier()
+	public void Move50()
 	{
-		Spawner.Move(TargetTower.transform, 0.5f);
+		Hub.Move(TargetTower.transform, 0.5f);
 	}
-	public void unq()
+	public void Move25()
 	{
-        Spawner.Move(TargetTower.transform, 0.25f);
+        Hub.Move(TargetTower.transform, 0.25f);
 	}	
-	public void Labo()
+	public void ConvertToLabo()
 	{
 		Hub.ChangeType(TowerData.BuildingType.Lab);
 	}
-	public void Generateru()
+	public void ConvertToGenerator()
 	{
 		Hub.ChangeType(TowerData.BuildingType.Generator);
 	}
-	public void levelup()
+
+    public void ConvertToFirewall()
+    {
+        Hub.ChangeType(TowerData.BuildingType.Firewall);
+    }
+
+    public void LevelUP()
 	{
 		Hub.LevelUP();
 	}
-	public void parefeu()
-	{
-        Hub.ChangeType(TowerData.BuildingType.Firewall);
-	}
+	
 
 	#endregion
 
@@ -87,10 +90,11 @@ public class UI : MonoBehaviour {
 	#region Subfunctions
     
 	//private void InitializeData() { }
+
 	private void InitializeScripts() {
 		Hub = SelectedTower.GetComponent<Tower_Hub>();
-		Spawner = SelectedTower.GetComponent<UnitSpawner>();
-     }
+    }
+    
     //private void InitializeRules() { }
     
     #endregion
