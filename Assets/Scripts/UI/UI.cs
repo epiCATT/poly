@@ -8,14 +8,14 @@ public class UI : MonoBehaviour {
     #region Declaration
 
     // Static Data
-    public GameObject SelectedTower;
+    public Tower_Hub SelectedTower;
     public GameObject TargetTower;
 
     // Dynamic Data
 
 
     // Subscripts
-    private Tower_Hub Hub;
+
 
     #endregion
 
@@ -27,7 +27,7 @@ public class UI : MonoBehaviour {
 
     // START
     void Start() {
-        InitializeScripts();
+        //InitializeScripts();
     }
 
     // UPDATE
@@ -50,51 +50,47 @@ public class UI : MonoBehaviour {
 
     public void Move100()
 	{
-		Hub.Move(TargetTower.transform, 1f);
+		SelectedTower.Move(TargetTower.transform, 1f);
 	}
 	public void Move75()
 	{
-		Hub.Move(TargetTower.transform, 0.75f);
+		SelectedTower.Move(TargetTower.transform, 0.75f);
 	}
 	public void Move50()
 	{
-		Hub.Move(TargetTower.transform, 0.5f);
+		SelectedTower.Move(TargetTower.transform, 0.5f);
 	}
 	public void Move25()
 	{
-        Hub.Move(TargetTower.transform, 0.25f);
+        SelectedTower.Move(TargetTower.transform, 0.25f);
 	}	
 	public void ConvertToLabo()
 	{
-		Hub.ChangeType(TowerData.BuildingType.Lab);
+		SelectedTower.ChangeType(TowerData.BuildingType.Lab);
 	}
 	public void ConvertToGenerator()
 	{
-		Hub.ChangeType(TowerData.BuildingType.Generator);
+		SelectedTower.ChangeType(TowerData.BuildingType.Generator);
 	}
 
     public void ConvertToFirewall()
     {
-        Hub.ChangeType(TowerData.BuildingType.Firewall);
+        SelectedTower.ChangeType(TowerData.BuildingType.Firewall);
     }
 
     public void LevelUP()
 	{
-		Hub.LevelUP();
+		SelectedTower.LevelUP();
 	}
-	
-
-	#endregion
 
 
-	#region Subfunctions
-    
-	//private void InitializeData() { }
+    #endregion
 
-	private void InitializeScripts() {
-		Hub = SelectedTower.GetComponent<Tower_Hub>();
-    }
-    
+
+    #region Subfunctions
+
+    //private void InitializeData() { }
+    //private void InitializeScripts() { };
     //private void InitializeRules() { }
     
     #endregion
