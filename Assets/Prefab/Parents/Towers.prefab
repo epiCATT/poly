@@ -55,10 +55,10 @@ MonoBehaviour:
   GeneratorCap: 100
   FirewallRange: 0
   FirewallRateOfFire: 0
-  TinkerTime: 3
+  TinkerTime: 5
   ConvertionCost: 30
   UpgradeCost1: 40
   UpgradeCost2: 50
   HamonizationTime: 5
   TimeBetweenSpawn: 0.2
-  UnitPrefab: {fileID: 1960383358179072, guid: 1ec5458712eaecb4ea0bc7d94f001d22, type: 2}
+  UnitPrefab: {fileID: 1491220639794802, guid: 4a488e85438c3c0499dd111be6796c80, type: 2}

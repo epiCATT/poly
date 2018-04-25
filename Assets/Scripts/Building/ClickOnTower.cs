@@ -36,17 +36,6 @@ public class ClickOnTower : MonoBehaviour {
         Scan();
     }
 
-    #region Getters
-
-
-    #endregion
-
-
-    #region Event
-
-
-    #endregion
-
 
     #region Methods
 
@@ -58,15 +47,18 @@ public class ClickOnTower : MonoBehaviour {
     #region Subfunctions
 
     //private void InitializeData() { }
+
     private void InitializeScripts() {
         ui = GetComponent<UI>();
     }
+
     //private void InitializeRules() { }
 
     private void Scan()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+
         if (Input.GetMouseButtonDown(0))
         {
             if (Physics.Raycast(ray, out hit))
@@ -78,6 +70,7 @@ public class ClickOnTower : MonoBehaviour {
                 }
             }
         }
+
         if (Input.GetMouseButtonDown(1))
         {
             if (Physics.Raycast(ray, out hit))
