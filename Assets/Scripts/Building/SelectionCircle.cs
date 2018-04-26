@@ -50,17 +50,15 @@ public class SelectionCircle : MonoBehaviour {
 	#region Methods
     public void Select(bool main)
     {
-<<<<<<< HEAD
         mrenderer.enabled = true;
-=======
+
         if (main)
-            renderer.material.color = Color.white;
+            mrenderer.material.color = Color.white;
         else
-            renderer.material.color = Color.red;
+            mrenderer.material.color = Color.red;
 
 
-        renderer.enabled = true;
->>>>>>> origin/Map-Opé
+        mrenderer.enabled = true;
     }
 
     public void Deselect()

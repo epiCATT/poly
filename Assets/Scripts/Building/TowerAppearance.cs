@@ -22,7 +22,6 @@ public class TowerAppearance : MonoBehaviour {
 
     // Subscripts
     private TowerData Data;
-    private TowerParticles Particles;
 
     #endregion
 
@@ -68,7 +67,6 @@ public class TowerAppearance : MonoBehaviour {
     private void InitializeScripts()
     {
         Data = GetComponentInParent<TowerData>();
-        Particles = GetComponentInChildren<TowerParticles>();
     }
 
     private void UpdateModel()
