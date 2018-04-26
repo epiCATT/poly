@@ -19,6 +19,7 @@ public class Tower_Hub : MonoBehaviour {
     private TowerBehavior TBehavior;
     private TowerAppearance Appearance;
     private UnitSpawner Spawner;
+    private SelectionCircle Circle;
 
     #endregion
 
@@ -84,6 +85,16 @@ public class Tower_Hub : MonoBehaviour {
         Spawner.Move(target, proportion);
     }
 
+    public void Select()
+    {
+        Circle.Select();
+    }
+
+    public void Deselect()
+    {
+        Circle.Deselect();
+    }
+
     #endregion Methods
 
 
@@ -98,6 +109,7 @@ public class Tower_Hub : MonoBehaviour {
         TBehavior = GetComponent<TowerBehavior>();
         Appearance = GetComponentInChildren<TowerAppearance>();
         Spawner = GetComponent<UnitSpawner>();
+        Circle = GetComponentInChildren<SelectionCircle>();
     }
 
     //private void InitializeRules() { }

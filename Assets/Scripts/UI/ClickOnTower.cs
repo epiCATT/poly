@@ -15,8 +15,10 @@ public class ClickOnTower : MonoBehaviour {
     private Tower_Hub hub;
     private Camera cameraJoueur;
 
+
     // Subscripts
     private UI ui;
+    
 
 
     #endregion
@@ -41,8 +43,8 @@ public class ClickOnTower : MonoBehaviour {
 
 
     #region Methods
-
     
+
 
     #endregion
 
@@ -70,12 +72,25 @@ public class ClickOnTower : MonoBehaviour {
             {
                 if (hit.transform.tag == "Tower")
                 {
+                    if (hub != null)
+                        hub.Deselect();
                     selectedTower = hit.transform.parent.gameObject;
                     hub = selectedTower.GetComponent<Tower_Hub>();
-                    
+
                     if (hub.GetData.Controller == gameObject)
+                    {
                         ui.SelectedTower = hub;
+                        hub.Select();
+                    }
                 }
+                else
+                {
+                    hub.Deselect();
+                }
+            }
+            else
+            {
+                hub.Deselect();
             }
         }
 
