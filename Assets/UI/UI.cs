@@ -11,14 +11,6 @@ public class UI : MonoBehaviour {
     // Static Data
     public Tower_Hub SelectedTower;
     public GameObject TargetTower;
-    public GameObject button1;
-    public GameObject button2;
-    public GameObject button3;
-    public GameObject button4;
-    public GameObject button5;
-    public GameObject button6;
-    public GameObject button7;
-    public GameObject button8;
 
     // Dynamic Data
 

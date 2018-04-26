@@ -71,21 +71,12 @@ public class ClickOnTower : MonoBehaviour {
                 if (hit.transform.tag == "Tower")
                 {
                     selectedTower = hit.transform.parent.gameObject;
-<<<<<<< HEAD:Assets/Scripts/Building/ClickOnTower.cs
-                    ui.SelectedTower = selectedTower.GetComponent<Tower_Hub>();
-
-                }
-                else 
-                {
-
-=======
                     hub = selectedTower.GetComponent<Tower_Hub>();
                     
                     if (hub.GetData.Controller == gameObject)
                         ui.SelectedTower = hub;
                     else
                         ui.SelectedTower = null;
->>>>>>> CameraJoueur:Assets/Scripts/UI/ClickOnTower.cs
                 }
                 else                
                     ui.SelectedTower = null;
@@ -102,14 +93,12 @@ public class ClickOnTower : MonoBehaviour {
                 {
                     selectedTower = hit.transform.parent.gameObject;
                     ui.TargetTower = selectedTower;
-                                    
                 }
-                else 
-                {
-   
-                }
-
+                else
+                    ui.TargetTower = null;
             }
+            else
+                ui.TargetTower = null;
         }
     }
 
