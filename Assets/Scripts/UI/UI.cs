@@ -34,17 +34,6 @@ public class UI : MonoBehaviour {
     void Update() {
     }
 
-	#region Getters
-
-
-    #endregion
-
-
-	#region Event
-
-
-    #endregion
-
 
 	#region Methods
 

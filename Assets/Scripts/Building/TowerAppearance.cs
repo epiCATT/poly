@@ -50,7 +50,6 @@ public class TowerAppearance : MonoBehaviour {
         UpdateModel();
         UpdateMaterial();
         UpdateColor();
-        print("Body Updated.");
     }
 
     #endregion
