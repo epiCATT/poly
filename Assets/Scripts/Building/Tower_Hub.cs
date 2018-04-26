@@ -26,7 +26,7 @@ public class Tower_Hub : MonoBehaviour {
 
     // AWAKE
     private void Awake() {
-        //InitializeData();
+        // InitializeData();
     }
 
     // START
@@ -85,9 +85,9 @@ public class Tower_Hub : MonoBehaviour {
         Spawner.Move(target, proportion);
     }
 
-    public void Select()
+    public void Select(bool main)
     {
-        Circle.Select();
+        Circle.Select(main);
     }
 
     public void Deselect()

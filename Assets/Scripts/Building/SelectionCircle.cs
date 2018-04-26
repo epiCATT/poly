@@ -48,8 +48,14 @@ public class SelectionCircle : MonoBehaviour {
 
 
 	#region Methods
-    public void Select()
+    public void Select(bool main)
     {
+        if (main)
+            renderer.material.color = Color.white;
+        else
+            renderer.material.color = Color.red;
+
+
         renderer.enabled = true;
     }
 
