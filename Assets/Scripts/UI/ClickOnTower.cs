@@ -12,16 +12,19 @@ public class ClickOnTower : MonoBehaviour {
 
     // Dynamic Data
     private GameObject selectedTower;
+    private Tower_Hub hub;
+    private Camera cameraJoueur;
 
     // Subscripts
     private UI ui;
+
 
     #endregion
 
 
     // AWAKE
     void Awake() {
-        //InitializeData();
+        InitializeData();
     }
 
     // START
@@ -46,17 +49,19 @@ public class ClickOnTower : MonoBehaviour {
 
     #region Subfunctions
 
-    //private void InitializeData() { }
+    private void InitializeData() {
+        cameraJoueur = GetComponentInChildren<Camera>();
+    }
 
     private void InitializeScripts() {
-        ui = GetComponent<UI>();
+        ui = GetComponentInChildren<UI>();
     }
 
     //private void InitializeRules() { }
 
     private void Scan()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = cameraJoueur.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Input.GetMouseButtonDown(0))
@@ -66,9 +71,18 @@ public class ClickOnTower : MonoBehaviour {
                 if (hit.transform.tag == "Tower")
                 {
                     selectedTower = hit.transform.parent.gameObject;
-                    ui.SelectedTower = selectedTower.GetComponent<Tower_Hub>();
+                    hub = selectedTower.GetComponent<Tower_Hub>();
+                    
+                    if (hub.GetData.Controller == gameObject)
+                        ui.SelectedTower = hub;
+                    else
+                        ui.SelectedTower = null;
                 }
+                else                
+                    ui.SelectedTower = null;
             }
+            else
+                ui.SelectedTower = null;
         }
 
         if (Input.GetMouseButtonDown(1))
