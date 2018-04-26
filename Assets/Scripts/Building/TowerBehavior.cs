@@ -23,6 +23,7 @@ public class TowerBehavior : MonoBehaviour {
     // Subscripts
     private _TowerRules Rules;
     private TowerData Data;
+    private TowerParticles Particles;
 
     #endregion
 
@@ -68,6 +69,7 @@ public class TowerBehavior : MonoBehaviour {
     {
         Rules = GetComponentInParent<_TowerRules>();
         Data = GetComponent<TowerData>();
+        Particles = GetComponentInChildren<TowerParticles>();
     }
 
     private void InitializeRules()
@@ -104,7 +106,7 @@ public class TowerBehavior : MonoBehaviour {
                 newLevel = currentLevel + 1;
                 newType = Data.Type;
 
-                // TO DO : Start Particles
+                Particles.PlayTinker();
             }
         }
     }
@@ -125,7 +127,7 @@ public class TowerBehavior : MonoBehaviour {
                 newLevel = 0;
                 this.newType = newType;
 
-                // TO DO : Start Particles
+                Particles.PlayTinker();
             }
         }
     }
@@ -136,6 +138,8 @@ public class TowerBehavior : MonoBehaviour {
 
         if (time >= TinkerTime)
         {
+            Particles.StopTinker();
+            Particles.PlayFinished();
             Data.SetLevel(newLevel);
             Data.SetType(newType);
             isOperational = true;
@@ -143,8 +147,8 @@ public class TowerBehavior : MonoBehaviour {
 
             if (newType == TowerData.BuildingType.Lab)
                 Data.ControllerData.GetLab();
-
-            // TO DO :  Stop Particles & Play Animation
+            
+  
         }
     }
 

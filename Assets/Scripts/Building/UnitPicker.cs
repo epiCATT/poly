@@ -21,6 +21,7 @@ public class UnitPicker : MonoBehaviour {
     private TowerData Data;
     private Tower_Hub Hub;
     private Harmonizer Harmonizer;
+    private TowerParticles Particles;
 
     #endregion
 
@@ -91,7 +92,7 @@ public class UnitPicker : MonoBehaviour {
                     Harmonizer.StartCountdown();
                 }
                 
-                //Particle.Play();
+                Particles.PlayAttaque();
                 Destroy(unit.gameObject);
             }
 
@@ -109,6 +110,7 @@ public class UnitPicker : MonoBehaviour {
         Data = GetComponentInParent<TowerData>();
         Hub = GetComponentInParent<Tower_Hub>();
         Harmonizer = GetComponentInParent<Harmonizer>();
+        Particles = GetComponentInChildren<TowerParticles>();
     }
 
     private void InitializeLocation()

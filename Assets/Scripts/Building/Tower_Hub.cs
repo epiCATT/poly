@@ -20,6 +20,7 @@ public class Tower_Hub : MonoBehaviour {
     private TowerAppearance Appearance;
     private UnitSpawner Spawner;
     private SelectionCircle Circle;
+    private TowerParticles Particles;
 
     #endregion
 
@@ -57,9 +58,10 @@ public class Tower_Hub : MonoBehaviour {
             Data.ControllerData.LooseLab();
 
         Data.SetController(player);
-        Appearance.ActualizeBody();
 
-        // TO DO : Particle effect
+        Particles.PlaySwitchjoueur();
+
+        Appearance.ActualizeBody();
 
         if (isLab)
             Data.ControllerData.GetLab();
@@ -110,6 +112,7 @@ public class Tower_Hub : MonoBehaviour {
         Appearance = GetComponentInChildren<TowerAppearance>();
         Spawner = GetComponent<UnitSpawner>();
         Circle = GetComponentInChildren<SelectionCircle>();
+        Particles = GetComponentInChildren<TowerParticles>();
     }
 
     //private void InitializeRules() { }
