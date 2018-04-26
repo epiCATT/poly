@@ -17,8 +17,8 @@ public class UnitSpawner : MonoBehaviour {
     private bool isMoving;
 
     private GameObject initialController;
-    private int unitSpawned;
-    private int unitToSpawn;
+    private float unitSpawned;
+    private float unitToSpawn;
     private float elapsedTime;
     private Transform selectedTarget;
 
@@ -76,9 +76,10 @@ public class UnitSpawner : MonoBehaviour {
         {
             isMoving = true;
             unitSpawned = 0;
-            unitToSpawn = (int)(Data.Population * proportion);
+            unitToSpawn = Data.Population * proportion;
             initialController = Data.Controller;
             selectedTarget = target;
+            print("Will move " + unitToSpawn.ToString() + " units.");
         }
     }
 
@@ -131,6 +132,7 @@ public class UnitSpawner : MonoBehaviour {
                 Spawn(selectedTarget, initialController);
                 Data.AddUnits(-1, false);
                 elapsedTime -= TimeBetweenSpawn;
+                unitSpawned += 1;
             }
         }
     }
