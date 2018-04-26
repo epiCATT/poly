@@ -67,6 +67,11 @@ public class ClickOnTower : MonoBehaviour {
                 {
                     selectedTower = hit.transform.parent.gameObject;
                     ui.SelectedTower = selectedTower.GetComponent<Tower_Hub>();
+
+                }
+                else 
+                {
+
                 }
             }
         }
@@ -79,7 +84,13 @@ public class ClickOnTower : MonoBehaviour {
                 {
                     selectedTower = hit.transform.parent.gameObject;
                     ui.TargetTower = selectedTower;
+                                    
                 }
+                else 
+                {
+   
+                }
+
             }
         }
     }
