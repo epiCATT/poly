@@ -92,35 +92,41 @@ public class TowerBehavior : MonoBehaviour {
 
     public void LevelUP()
     {
-        int currentLevel = Data.Level;
-        float cost = UpgradeCost[currentLevel];
-
-        if (currentLevel < 2 && Data.Population >= cost)
+        if (isOperational)
         {
-            Data.AddUnits(-cost);
-            isOperational = false;
-            newLevel = currentLevel + 1;
-            newType = Data.Type;
+            int currentLevel = Data.Level;
+            float cost = UpgradeCost[currentLevel];
 
-            // TO DO : Start Particles
+            if (currentLevel < 2 && Data.Population >= cost)
+            {
+                Data.AddUnits(-cost);
+                isOperational = false;
+                newLevel = currentLevel + 1;
+                newType = Data.Type;
+
+                // TO DO : Start Particles
+            }
         }
     }
 
     public void ChangeType(TowerData.BuildingType newType)
     {
-        TowerData.BuildingType currentType = Data.Type;
-
-        if (newType != currentType && Data.Population >= ConvertionCost)
+        if (isOperational)
         {
-            if (currentType == TowerData.BuildingType.Lab)
-                Data.ControllerData.LooseLab();
+            TowerData.BuildingType currentType = Data.Type;
 
-            Data.AddUnits(-ConvertionCost);
-            isOperational = false;
-            newLevel = 0;
-            this.newType = newType;
+            if (newType != currentType && Data.Population >= ConvertionCost)
+            {
+                if (currentType == TowerData.BuildingType.Lab)
+                    Data.ControllerData.LooseLab();
 
-            // TO DO : Start Particles
+                Data.AddUnits(-ConvertionCost);
+                isOperational = false;
+                newLevel = 0;
+                this.newType = newType;
+
+                // TO DO : Start Particles
+            }
         }
     }
 
