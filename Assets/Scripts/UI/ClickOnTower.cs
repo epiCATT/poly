@@ -12,7 +12,9 @@ public class ClickOnTower : MonoBehaviour {
 
     // Dynamic Data
     private GameObject selectedTower;
-    private Tower_Hub hub;
+    private GameObject targetTower;
+    private Tower_Hub hubMain;
+    private Tower_Hub hubTarget;
     private Camera cameraJoueur;
 
 
@@ -65,6 +67,7 @@ public class ClickOnTower : MonoBehaviour {
     {
         Ray ray = cameraJoueur.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        RaycastHit hit2;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -72,39 +75,44 @@ public class ClickOnTower : MonoBehaviour {
             {
                 if (hit.transform.tag == "Tower")
                 {
-                    if (hub != null)
-                        hub.Deselect();
-                    selectedTower = hit.transform.parent.gameObject;
-                    hub = selectedTower.GetComponent<Tower_Hub>();
+                    if (hubMain != null)
+                        hubMain.Deselect();
 
-                    if (hub.GetData.Controller == gameObject)
+                    selectedTower = hit.transform.parent.gameObject;
+                    hubMain = selectedTower.GetComponent<Tower_Hub>();
+
+                    if (hubMain.GetData.Controller == gameObject)
                     {
-                        ui.SelectedTower = hub;
-                        hub.Select();
+                        ui.SelectedTower = hubMain;
+                        hubMain.Select(true);
                     }
-                }
-                else
-                {
-                    hub.Deselect();
                 }
             }
             else
-            {
-                hub.Deselect();
-            }
+                hubMain.Deselect();
         }
 
         if (Input.GetMouseButtonDown(1))
         {
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit2))
             {
-                if (hit.transform.tag == "Tower")
+                if (hit2.transform.tag == "Tower")
                 {
-                    selectedTower = hit.transform.parent.gameObject;
-                    ui.TargetTower = selectedTower;
+                    if (hubTarget != null)
+                        hubTarget.Deselect();
+
+                    targetTower = hit2.transform.parent.gameObject;
+                    hubTarget = targetTower.GetComponent<Tower_Hub>();
+                    ui.TargetTower = targetTower;
+                    hubTarget.Select(false);
                 }
             }
-        }
+            else
+            { 
+                hubTarget.Deselect();
+                ui.TargetTower = null;
+            }
+    }
     }
 
     #endregion
