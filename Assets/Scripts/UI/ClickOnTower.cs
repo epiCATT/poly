@@ -75,14 +75,8 @@ public class ClickOnTower : MonoBehaviour {
                     
                     if (hub.GetData.Controller == gameObject)
                         ui.SelectedTower = hub;
-                    else
-                        ui.SelectedTower = null;
                 }
-                else                
-                    ui.SelectedTower = null;
             }
-            else
-                ui.SelectedTower = null;
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -94,11 +88,7 @@ public class ClickOnTower : MonoBehaviour {
                     selectedTower = hit.transform.parent.gameObject;
                     ui.TargetTower = selectedTower;
                 }
-                else
-                    ui.TargetTower = null;
             }
-            else
-                ui.TargetTower = null;
         }
     }
 
