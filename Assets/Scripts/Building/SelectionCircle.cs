@@ -11,7 +11,7 @@ public class SelectionCircle : MonoBehaviour {
 
 
     // Dynamic Data
-    private MeshRenderer renderer;
+    private MeshRenderer mrenderer;
 
 
     // Subscripts
@@ -50,12 +50,12 @@ public class SelectionCircle : MonoBehaviour {
 	#region Methods
     public void Select()
     {
-        renderer.enabled = true;
+        mrenderer.enabled = true;
     }
 
     public void Deselect()
     {
-        renderer.enabled = false;
+        mrenderer.enabled = false;
     }
 
     #endregion
@@ -64,7 +64,7 @@ public class SelectionCircle : MonoBehaviour {
     #region Subfunctions
 
     private void InitializeData() {
-        renderer = GetComponentInChildren<MeshRenderer>();
+        mrenderer = GetComponentInChildren<MeshRenderer>();
     }
     //private void InitializeScripts() { }
     //private void InitializeRules() { }

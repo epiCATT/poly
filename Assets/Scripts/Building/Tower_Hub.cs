@@ -14,7 +14,6 @@ public class Tower_Hub : MonoBehaviour {
 
 
     // Subscripts
-    private _TowerRules Rules;
     private TowerData Data;
     private TowerBehavior TBehavior;
     private TowerAppearance Appearance;
@@ -104,7 +103,6 @@ public class Tower_Hub : MonoBehaviour {
 
     private void InitializeScripts()
     {
-        Rules = GetComponentInParent<_TowerRules>();
         Data = GetComponent<TowerData>();
         TBehavior = GetComponent<TowerBehavior>();
         Appearance = GetComponentInChildren<TowerAppearance>();
