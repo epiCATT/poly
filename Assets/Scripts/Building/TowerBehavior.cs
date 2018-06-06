@@ -8,22 +8,30 @@ public class TowerBehavior : MonoBehaviour {
     #region Declaration
 
     // Static Data
-
-    // Dynamic Data
     private float BaseGenerationTime;
     private float GeneratorCap;
+    private float FireWallRange;
+    private float FireWallCD;
     private float TinkerTime;
     private float ConvertionCost;
     private float[] UpgradeCost;
+    private GameObject BulletPrefab;
+    public GameObject Target;
+
+    // Dynamic Data
+    private Transform spawnLocation;
     private bool isOperational;
     private int newLevel;
     private TowerData.BuildingType newType;
     private float time;
+    private float timeNeeded;
+    
 
     // Subscripts
     private _TowerRules Rules;
     private TowerData Data;
     private TowerParticles Particles;
+    private FirewallTrigger FWTrigger;
 
     #endregion
 
@@ -52,7 +60,10 @@ public class TowerBehavior : MonoBehaviour {
 
     #region Methods
 
-
+    public void UpdateRange()
+    {
+        FWTrigger.UpdateRange(FireWallRange * (1f + (float)Data.Level / 3f));
+    }
 
     #endregion Methods
 
@@ -63,6 +74,7 @@ public class TowerBehavior : MonoBehaviour {
     {
         time = 0;
         isOperational = true;
+        spawnLocation = GetComponent<Transform>();
     }
 
     private void InitializeScripts()
@@ -70,17 +82,21 @@ public class TowerBehavior : MonoBehaviour {
         Rules = GetComponentInParent<_TowerRules>();
         Data = GetComponent<TowerData>();
         Particles = GetComponentInChildren<TowerParticles>();
+        FWTrigger = GetComponentInChildren<FirewallTrigger>();
     }
 
     private void InitializeRules()
     {
         BaseGenerationTime = Rules.BaseGenerationTime;
         GeneratorCap = Rules.GeneratorCap;
+        FireWallRange = Rules.FirewallRange;
+        FireWallCD = 1 / Rules.FirewallRateOfFire;
         TinkerTime = Rules.TinkerTime;
         ConvertionCost = Rules.ConvertionCost;
         UpgradeCost = new float[2];
         UpgradeCost[0] = Rules.UpgradeCost1;
         UpgradeCost[1] = Rules.UpgradeCost2;
+        BulletPrefab = Rules.BulletPrefab;
     }
 
     private void DoYourJob()
@@ -89,7 +105,7 @@ public class TowerBehavior : MonoBehaviour {
         if (type == TowerData.BuildingType.Generator)
             Grow();
         else if (type == TowerData.BuildingType.Firewall)
-            throw new System.NotImplementedException();
+            Aim();
     }
 
     public void LevelUP()
@@ -147,8 +163,9 @@ public class TowerBehavior : MonoBehaviour {
 
             if (newType == TowerData.BuildingType.Lab)
                 Data.ControllerData.GetLab();
-            
-  
+
+            else if (newType == TowerData.BuildingType.Firewall)
+                UpdateRange();
         }
     }
 
@@ -157,7 +174,7 @@ public class TowerBehavior : MonoBehaviour {
         if (Data.Population < GeneratorCap)
         {
             time += Time.deltaTime;
-            float timeNeeded = BaseGenerationTime / (Data.Level+1);
+            timeNeeded = BaseGenerationTime / (Data.Level+1);
 
             while (time >= timeNeeded)
             {
@@ -169,5 +186,32 @@ public class TowerBehavior : MonoBehaviour {
             time = 0;
     }
 
+    private void Aim()
+    {
+        time += Time.deltaTime;
+        timeNeeded = FireWallCD / (Data.Level + 1);
+
+        while (time > timeNeeded)
+        {
+            Transform target = FWTrigger.GetTarget();
+
+            if (target != null)
+            {
+                Shoot(target);
+                time -= timeNeeded;
+            }
+            else
+                time = timeNeeded;
+        }
+    }
+
+    private void Shoot(Transform target)
+    {
+        GameObject bullet = Instantiate(BulletPrefab, spawnLocation);
+        BulletData bulletData = bullet.GetComponent<BulletData>();
+        bulletData.Target = target;
+        bulletData.ControllerData = Data.ControllerData;
+    }
+    
     #endregion
 }

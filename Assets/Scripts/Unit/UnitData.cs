@@ -10,7 +10,7 @@ public class UnitData : MonoBehaviour {
     public Transform Origin;
     public GameObject Controller;
     private PlayerData controllerData;
-    NavMeshAgent agent;
+    private NavMeshAgent agent;
 
 
     // START
@@ -32,6 +32,16 @@ public class UnitData : MonoBehaviour {
     #region Getter
 
     public PlayerData ControllerData { get { return controllerData; } }
+
+    #endregion
+
+
+    #region Event
+
+    private void OnDestroy()
+    {
+        controllerData.AddUnits(-1);
+    }
 
     #endregion
 }

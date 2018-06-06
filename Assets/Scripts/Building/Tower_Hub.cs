@@ -20,6 +20,7 @@ public class Tower_Hub : MonoBehaviour {
     private UnitSpawner Spawner;
     private SelectionCircle Circle;
     private TowerParticles Particles;
+    private FirewallTrigger FWTrigger;
 
     #endregion
 
@@ -64,6 +65,9 @@ public class Tower_Hub : MonoBehaviour {
 
         if (isLab)
             Data.ControllerData.GetLab();
+
+        if (Data.Type == TowerData.BuildingType.Firewall)
+            FWTrigger.ActualizeController();
     }
 
     public void ChangeType(TowerData.BuildingType newType)
@@ -89,11 +93,14 @@ public class Tower_Hub : MonoBehaviour {
     public void Select(bool main)
     {
         Circle.Select(main);
+        if (main && Data.Type == TowerData.BuildingType.Firewall)
+            FWTrigger.Select();
     }
 
     public void Deselect()
     {
         Circle.Deselect();
+        FWTrigger.Deselect();
     }
 
     #endregion Methods
@@ -111,6 +118,7 @@ public class Tower_Hub : MonoBehaviour {
         Spawner = GetComponent<UnitSpawner>();
         Circle = GetComponentInChildren<SelectionCircle>();
         Particles = GetComponentInChildren<TowerParticles>();
+        FWTrigger = GetComponentInChildren<FirewallTrigger>();
     }
 
     //private void InitializeRules() { }
