@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Bouton : MonoBehaviour {
+
+    
+
+    #region Declaration
+
+    // Static Data
 
     public GameObject GeneratorTEST;
     public GameObject FirewallTEST;
@@ -15,7 +22,7 @@ public class Bouton : MonoBehaviour {
     public GameObject Tower4;
     public GameObject Tower2BIS;
     public GameObject Tower1BIS;
-    private int count = 0; 
+
     public Text MainText;
     public GameObject UpgradeButton;
     public GameObject button25;
@@ -28,15 +35,18 @@ public class Bouton : MonoBehaviour {
     public GameObject Panel;
     public Text finaltext;
     public GameObject Panel2;
+    public GameObject Panel3;
+    public Text text2;
     public GameObject board;
+    public GameObject Player1;
+    public GameObject Histo;
+    public GameObject Units;
 
-    #region Declaration
-
-    // Static Data
 
 
     // Dynamic Data
-
+    private int count = 0; 
+    private PlayerData playerData;
 
     // Subscripts
 
@@ -46,7 +56,7 @@ public class Bouton : MonoBehaviour {
 
     // AWAKE
     void Awake() {
-        //InitializeData();
+        InitializeData();
     }
 
     // START
@@ -81,19 +91,26 @@ public class Bouton : MonoBehaviour {
         if (count == 0)
         {
             MainText.text = "Meet the Generator";
+            text2.text = "You can see that the tower unit number is increasing because the tower is a generator";
             GeneratorTEST.SetActive(true);
+
+            Histo.SetActive(false);
             LaboTEST.SetActive(false);
+
         }
         if (count == 1)
         {
             MainText.text = "Meet the Firewall";
             FirewallTEST.SetActive(true);
+            Units.SetActive(true);
+            Panel3.SetActive(false);
             GeneratorTEST.SetActive(false);
         }
         if (count == 2)
         {
             MainText.text = "Your team's color is red, therefore your buildings are red.";
             FirewallTEST.SetActive(false);
+            Units.SetActive(false);
             Tower1.SetActive(true);
             
         }
@@ -140,6 +157,8 @@ public class Bouton : MonoBehaviour {
             button75.SetActive(false);
             button50.SetActive(false);
             button25.SetActive(false);
+            Panel3.SetActive(true);
+            text2.text = "You can see that the texture of the tower changes depending on the level.";
             UpgradeButton.SetActive(true);
         }
         if (count == 7)
@@ -148,7 +167,7 @@ public class Bouton : MonoBehaviour {
             Tower1BIS.SetActive(true);
             MainText.text = "Change the buildig's type by simply clicking 'To Lab'.";
             UpgradeButton.SetActive(false);
-            
+            Panel3.SetActive(false);
             ToLabButton.SetActive(true);
         }
         if (count == 8)
@@ -164,13 +183,23 @@ public class Bouton : MonoBehaviour {
             
             
         }
+        if (count == 8)
+        {
+            
+            SceneManager.LoadScene("MenuPrincipal");
+            
+            
+        }
 
         count++;
     }
 
 	#region Subfunctions
     
-	//private void InitializeData() { }
+	private void InitializeData() {
+
+        playerData = Player1.GetComponent<PlayerData>();
+     }
 	//private void InitializeScripts() { }
     //private void InitializeRules() { }
     
