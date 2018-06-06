@@ -16,7 +16,6 @@ public class TowerBehavior : MonoBehaviour {
     private float ConvertionCost;
     private float[] UpgradeCost;
     private GameObject BulletPrefab;
-    public GameObject Target;
 
     // Dynamic Data
     private Transform spawnLocation;
