@@ -19,6 +19,7 @@ public class _TowerRules : MonoBehaviour {
     public float HamonizationTime;
     public float TimeBetweenSpawn;
     public GameObject UnitPrefab;
+    public GameObject BulletPrefab;
 
     // Dynamic Data
 

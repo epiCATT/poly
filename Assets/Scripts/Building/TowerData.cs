@@ -24,6 +24,7 @@ public class TowerData : MonoBehaviour {
     // Subscripts
     private TowerAppearance Appearance;
     private TowerUI UI;
+    private TowerBehavior TBehavior;
 
     #endregion
 
@@ -121,6 +122,7 @@ public class TowerData : MonoBehaviour {
     {
         Appearance = GetComponentInChildren<TowerAppearance>();
         UI = GetComponentInChildren<TowerUI>();
+        TBehavior = GetComponentInChildren<TowerBehavior>();
     }
 
     private void InitializeInfo()
@@ -128,6 +130,8 @@ public class TowerData : MonoBehaviour {
         controllerData.AddUnits(population);
         if (StartingType == BuildingType.Lab)
             controllerData.GetLab();
+        else if (StartingType == BuildingType.Firewall)
+            TBehavior.UpdateRange();
     }
 
     #endregion

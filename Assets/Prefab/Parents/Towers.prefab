@@ -62,3 +62,5 @@ MonoBehaviour:
   HamonizationTime: 5
   TimeBetweenSpawn: 0.2
   UnitPrefab: {fileID: 1491220639794802, guid: 4a488e85438c3c0499dd111be6796c80, type: 2}
+  BulletPrefab: {fileID: 1160533698161054, guid: c44490ec2a845144a98c1ccf30317581,
+    type: 2}

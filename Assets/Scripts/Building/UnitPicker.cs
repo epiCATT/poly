@@ -63,7 +63,7 @@ public class UnitPicker : MonoBehaviour {
 
                 if (unitController == towerController)
                 {
-                    Data.AddUnits(1, false);
+                    Data.AddUnits(1);
                 }
                 else
                 {
@@ -76,14 +76,12 @@ public class UnitPicker : MonoBehaviour {
                     if (population >= attackerCombatPower)
                     {
                         Data.AddUnits(-attackerCombatPower);
-                        unitControllerData.AddUnits(-1);
                     }
                     // If attacker wins
                     else
                     {
                         float leftover = attackerCombatPower - population;
                         Data.AddUnits(-population);
-                        unitControllerData.AddUnits(-1);
                         Hub.ChangeController(unitController);
                         Data.AddUnits(leftover);
                     }
