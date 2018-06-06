@@ -9,18 +9,12 @@ public class Histo : MonoBehaviour {
     #region Declaration
 
     // Static Data
-    /* 
-    public Image imageJoueur1;
-    public Image imageJoueur2;
-    public Image imageJoueur3;
-    public Image imageJoueur4; */
     public Image[] ImagesJoueurs;
     public Image[] ImagesCombat;
     public Text[] TextJoueurs;
     public Text[] TextCombat;
-
-
     public GameObject Players;
+    public float MaxWidth;
 
     
 
@@ -107,6 +101,7 @@ public class Histo : MonoBehaviour {
     public void Actualize()
     {
         total = 0;
+
         for (int i = 0; i < nplayer; i++)
         {
             total += playerDataList[i].NumberOfUnits;
@@ -116,36 +111,10 @@ public class Histo : MonoBehaviour {
         {
             TextJoueurs[j].text =  playerDataList[j].NumberOfUnits.ToString();
             TextCombat[j].text =  playerDataList[j].CombatPower.ToString();
-            proportion = playerDataList[j].NumberOfUnits / total * 500;
+            proportion = playerDataList[j].NumberOfUnits / total * MaxWidth;
 
-            ImagesJoueurs[j].rectTransform.sizeDelta = new Vector2(proportion,30f);
+            ImagesJoueurs[j].rectTransform.sizeDelta = new Vector2(proportion, 30f);
         }
-        
-
-        
-        /*imageJoueur1.color = Color.red;
-        int x = 150;
-        imageJoueur1.rectTransform.sizeDelta = new Vector2(x,15);
-        Text1.text = ""+ x;  
-
-        imageJoueur2.color = Color.blue;
-        int y = 20;
-        imageJoueur2.rectTransform.sizeDelta = new Vector2(y,15);
-        Text2.text = ""+ y; 
-
-        imageJoueur3.color = Color.green;
-        int w = 190;
-        imageJoueur3.rectTransform.sizeDelta = new Vector2(w,15);
-        Text3.text = ""+ w;  
-
-        int z = 87;
-        imageJoueur4.color = Color.yellow;
-        imageJoueur4.rectTransform.sizeDelta = new Vector2(z,15);
-        Text4.text = ""+ z; */
-
-        
-
-        
         
     }
 
@@ -158,6 +127,7 @@ public class Histo : MonoBehaviour {
         playerDataList = Players.GetComponentsInChildren<PlayerData>();
         nplayer = playerDataList.Length; 
      }
+
 	//private void InitializeScripts() { }
     //private void InitializeRules() { }
     

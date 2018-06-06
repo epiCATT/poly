@@ -4,19 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Info : MonoBehaviour {
-    [SerializeField] public Image customeimage;
-    void Start() {
-        customeimage.enabled = false;
-    }
+
+    public Image CustomImage;
+
     public void On()
     {
-        if(customeimage.enabled == false)
+        if(CustomImage.gameObject.activeSelf)
         {
-            customeimage.enabled = true;
+            CustomImage.gameObject.SetActive(false);
         }
         else
         {
-            customeimage.enabled = false;
+            CustomImage.gameObject.SetActive(true);
         }
 
     }
