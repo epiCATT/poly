@@ -17,10 +17,10 @@ public class ClickOnTower : MonoBehaviour {
     private Tower_Hub hubTarget;
     private Camera cameraJoueur;
 
-
     // Subscripts
     private UI ui;
-    
+    private PlayerData playerData;
+
 
 
     #endregion
@@ -34,7 +34,8 @@ public class ClickOnTower : MonoBehaviour {
     // START
     void Start() {
         InitializeScripts();
-		//InitializeRules();
+        //InitializeRules();
+        InitializeLayer();
     }
 
     // UPDATE
@@ -59,6 +60,7 @@ public class ClickOnTower : MonoBehaviour {
 
     private void InitializeScripts() {
         ui = GetComponentInChildren<UI>();
+        playerData = GetComponent<PlayerData>();
     }
 
     //private void InitializeRules() { }
@@ -112,7 +114,13 @@ public class ClickOnTower : MonoBehaviour {
                 hubTarget.Deselect();
                 ui.TargetTower = null;
             }
+        }
     }
+
+    private void InitializeLayer()
+    {
+        int playerNumber = playerData.PlayerNumber;
+        cameraJoueur.cullingMask = 1 << (7 + playerNumber) | (~(1 << 7) & cameraJoueur.cullingMask);
     }
 
     #endregion

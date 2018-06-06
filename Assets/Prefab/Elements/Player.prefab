@@ -808,7 +808,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294963455
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2399,8 +2399,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerNumber: 1
   Color: {r: 1, g: 0, b: 0, a: 1}
-  StartingUnits: 0
-  StartingLabs: 0
 --- !u!114 &114882425232697724
 MonoBehaviour:
   m_ObjectHideFlags: 1
