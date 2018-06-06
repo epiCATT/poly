@@ -18,7 +18,7 @@ public class PlayerData : MonoBehaviour {
 
     // Elements UI
     public Text UnitText;
-    public Text CbPowText;
+    //public Text CbPowText;
 
     // Donnees d'initialization
     public int StartingUnits;
@@ -51,7 +51,7 @@ public class PlayerData : MonoBehaviour {
     public void AddUnits(float nOfUnit)
     {
         numberOfUnits += nOfUnit;
-        ActualizeUI();
+        //ActualizeUI();
     }
 
     public void GetLab()
@@ -73,14 +73,16 @@ public class PlayerData : MonoBehaviour {
         else
             combatPower = 1f + 0.5f * possessedLabs;
 
-        ActualizeUI();
+        //ActualizeUI();
     }
 
+    /* 
     private void ActualizeUI()
     {
-        UnitText.text = "Number of units : " + (Mathf.RoundToInt(numberOfUnits)).ToString();
-        CbPowText.text = "Combat Power : " + combatPower.ToString();
+        UnitText.text = Mathf.RoundToInt(numberOfUnits).ToString();
+        CbPowText.text = combatPower.ToString();
     }
+    */
 
     #endregion Methods
 }

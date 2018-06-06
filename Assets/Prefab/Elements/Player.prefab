@@ -1234,9 +1234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNumber: 1
-  Color: {r: 1, g: 0, b: 0, a: 0}
+  Color: {r: 1, g: 0, b: 0, a: 1}
   UnitText: {fileID: 0}
-  CbPowText: {fileID: 0}
   StartingUnits: 0
   StartingLabs: 0
 --- !u!114 &114843916385464142
