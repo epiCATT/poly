@@ -161,7 +161,7 @@ public class Bouton : MonoBehaviour {
             button50.SetActive(false);
             button25.SetActive(false);
             Panel3.SetActive(true);
-            text2.text = "You can see that the texture of the tower changes depending on the level.";
+            text2.text = "You can see that the texture of the tower changes depending on the level. Upgrade cost Units.";
             UpgradeButton.SetActive(true);
         }
         if (count == 7)
