@@ -16,6 +16,9 @@ public class PlayerData : MonoBehaviour {
     private int possessedLabs;
     private float combatPower;
 
+    // Subscripts
+    private GameManager GManager;
+
 
     #region Getters
 
@@ -26,6 +29,7 @@ public class PlayerData : MonoBehaviour {
     // START
     void Start()
     {
+        GManager = GetComponentInParent<GameManager>();
         ActualizeCombatPower();
     }
 
@@ -35,6 +39,8 @@ public class PlayerData : MonoBehaviour {
     public void AddUnits(float nOfUnit)
     {
         numberOfUnits += nOfUnit;
+        if (numberOfUnits <= 0)
+            GManager.Eliminate(this.gameObject);
     }
 
     public void GetLab()

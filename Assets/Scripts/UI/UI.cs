@@ -43,7 +43,6 @@ public class UI : MonoBehaviour {
         if (SelectedTower != null && TargetTower != null)
         {
             SelectedTower.Move(TargetTower.transform, 1f);
-            SelectedTower.Select(Color.white);
         }
 	}
 
@@ -52,7 +51,6 @@ public class UI : MonoBehaviour {
         if (SelectedTower != null && TargetTower != null)
         {
             SelectedTower.Move(TargetTower.transform, 0.75f);
-            SelectedTower.Select(Color.white);
         }
     }
 
@@ -61,7 +59,6 @@ public class UI : MonoBehaviour {
         if (SelectedTower != null && TargetTower != null)
         {
             SelectedTower.Move(TargetTower.transform, 0.5f);
-            SelectedTower.Select(Color.white);
         }
     }
 
@@ -70,7 +67,6 @@ public class UI : MonoBehaviour {
         if (SelectedTower != null && TargetTower != null)
         {
             SelectedTower.Move(TargetTower.transform, 0.25f);
-            SelectedTower.Select(Color.white);
         }
     }	
 
@@ -79,7 +75,6 @@ public class UI : MonoBehaviour {
         if (SelectedTower != null)
         {
             SelectedTower.ChangeType(TowerData.BuildingType.Lab);
-            SelectedTower.Select(Color.white);
         }
     }
     public void ConvertToGenerator()
@@ -87,7 +82,6 @@ public class UI : MonoBehaviour {
         if (SelectedTower != null)
         { 
             SelectedTower.ChangeType(TowerData.BuildingType.Generator);
-            SelectedTower.Select(Color.white);
         }
     }
 
@@ -96,7 +90,6 @@ public class UI : MonoBehaviour {
         if (SelectedTower != null)
         {
             SelectedTower.ChangeType(TowerData.BuildingType.Firewall);
-            SelectedTower.Select(Color.white);
         }
     }
 
@@ -105,7 +98,7 @@ public class UI : MonoBehaviour {
         if (SelectedTower != null)
         {
             SelectedTower.LevelUP();
-            SelectedTower.Select(Color.white);
+            //SelectedTower.Select(Color.white);
         }
     }
 

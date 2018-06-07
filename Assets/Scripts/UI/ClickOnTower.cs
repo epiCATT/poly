@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+
 
 public class ClickOnTower : MonoBehaviour
 {
@@ -78,7 +80,7 @@ public class ClickOnTower : MonoBehaviour
         RaycastHit hit;
         RaycastHit hit2;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (Physics.Raycast(ray, out hit))
             {
@@ -103,7 +105,7 @@ public class ClickOnTower : MonoBehaviour
                 SelectMain(false);
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (Physics.Raycast(ray, out hit2))
             {
@@ -145,6 +147,9 @@ public class ClickOnTower : MonoBehaviour
         else if (hubMain != null)
         {
             hubMain.Deselect();
+            selectedTower = null;
+            hubMain = null;
+            ui.SelectedTower = null;
         }
     }
 
