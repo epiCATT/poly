@@ -46,7 +46,6 @@ public class Bouton : MonoBehaviour {
 
     // Dynamic Data
     private int count = 0; 
-    private PlayerData playerData;
 
     // Subscripts
 
@@ -56,8 +55,7 @@ public class Bouton : MonoBehaviour {
 
     // AWAKE
     void Awake() {
-        
-        InitializeData();
+        //InitializeData();
     }
 
     // START
@@ -199,10 +197,7 @@ public class Bouton : MonoBehaviour {
 
 	#region Subfunctions
     
-	private void InitializeData() {
-
-        playerData = Player1.GetComponent<PlayerData>();
-     }
+	//private void InitializeData() { }
 	//private void InitializeScripts() { }
     //private void InitializeRules() { }
     

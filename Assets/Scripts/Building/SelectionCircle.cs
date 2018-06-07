@@ -48,17 +48,10 @@ public class SelectionCircle : MonoBehaviour {
 
 
 	#region Methods
-    public void Select(bool main)
+    public void Select(Color color)
     {
         mrenderer.enabled = true;
-
-        if (main)
-            mrenderer.material.color = Color.white;
-        else
-            mrenderer.material.color = Color.red;
-
-
-        mrenderer.enabled = true;
+        mrenderer.material.color = color;
     }
 
     public void Deselect()
@@ -74,6 +67,7 @@ public class SelectionCircle : MonoBehaviour {
     private void InitializeData() {
         mrenderer = GetComponentInChildren<MeshRenderer>();
     }
+
     //private void InitializeScripts() { }
     //private void InitializeRules() { }
 

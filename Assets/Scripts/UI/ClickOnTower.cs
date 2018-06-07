@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickOnTower : MonoBehaviour {
+public class ClickOnTower : MonoBehaviour
+{
 
 
     #region Declaration
@@ -16,6 +17,7 @@ public class ClickOnTower : MonoBehaviour {
     private Tower_Hub hubMain;
     private Tower_Hub hubTarget;
     private Camera cameraJoueur;
+    Rect screenRect;
 
     // Subscripts
     private UI ui;
@@ -27,12 +29,14 @@ public class ClickOnTower : MonoBehaviour {
 
 
     // AWAKE
-    void Awake() {
+    void Awake()
+    {
         InitializeData();
     }
 
     // START
-    void Start() {
+    void Start()
+    {
         InitializeScripts();
         //InitializeRules();
         InitializeLayer();
@@ -46,7 +50,7 @@ public class ClickOnTower : MonoBehaviour {
 
 
     #region Methods
-    
+
 
 
     #endregion
@@ -54,13 +58,16 @@ public class ClickOnTower : MonoBehaviour {
 
     #region Subfunctions
 
-    private void InitializeData() {
-        cameraJoueur = GetComponentInChildren<Camera>();
+    private void InitializeData()
+    {
+        cameraJoueur = GetComponent<Camera>();
+        screenRect = new Rect(0, 0, Screen.width, Screen.height);
     }
 
-    private void InitializeScripts() {
-        ui = GetComponentInChildren<UI>();
-        playerData = GetComponent<PlayerData>();
+    private void InitializeScripts()
+    {
+        ui = GetComponent<UI>();
+        playerData = GetComponentInParent<PlayerData>();
     }
 
     //private void InitializeRules() { }
@@ -75,23 +82,25 @@ public class ClickOnTower : MonoBehaviour {
         {
             if (Physics.Raycast(ray, out hit))
             {
+
                 if (hit.transform.tag == "Tower")
                 {
-                    if (hubMain != null)
-                        hubMain.Deselect();
+                    Debug.Log("Raycast hit a Tower");
+                    SelectMain(false);
 
                     selectedTower = hit.transform.parent.gameObject;
                     hubMain = selectedTower.GetComponent<Tower_Hub>();
 
-                    if (hubMain.GetData.Controller == gameObject)
-                    {
-                        ui.SelectedTower = hubMain;
-                        hubMain.Select(true);
-                    }
+                    if (hubMain.GetData.ControllerData == playerData)
+                        SelectMain(true);
+                    else
+                        SelectMain(false);
                 }
+                else if (hit.transform.gameObject.layer != 5)
+                    SelectMain(false);
             }
             else
-                hubMain.Deselect();
+                SelectMain(false);
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -100,27 +109,59 @@ public class ClickOnTower : MonoBehaviour {
             {
                 if (hit2.transform.tag == "Tower")
                 {
-                    if (hubTarget != null)
-                        hubTarget.Deselect();
+                    SelectTarget(false);
 
                     targetTower = hit2.transform.parent.gameObject;
                     hubTarget = targetTower.GetComponent<Tower_Hub>();
-                    ui.TargetTower = targetTower;
-                    hubTarget.Select(false);
+
+                    SelectTarget(true);
                 }
+                else if (hit2.transform.gameObject.layer != 5)
+                    SelectMain(false);
             }
             else
-            { 
-                hubTarget.Deselect();
-                ui.TargetTower = null;
-            }
+                SelectTarget(false);
         }
     }
 
     private void InitializeLayer()
     {
         int playerNumber = playerData.PlayerNumber;
-        cameraJoueur.cullingMask = 1 << (7 + playerNumber) | (~(1 << 7) & cameraJoueur.cullingMask);
+        cameraJoueur.cullingMask |= (1 << (7 + playerNumber));
+    }
+
+    private bool MouseScreenCheck()
+    {
+        return !screenRect.Contains(Input.mousePosition);
+    }
+
+    private void SelectMain(bool succes)
+    {
+        if (succes)
+        {
+            ui.SelectedTower = hubMain;
+            hubMain.Select(Color.white);
+        }
+        else if (hubMain != null)
+        {
+            hubMain.Deselect();
+        }
+    }
+
+    private void SelectTarget(bool succes)
+    {
+        if (succes)
+        {
+            ui.TargetTower = targetTower;
+            hubTarget.Select(playerData.Color);
+        }
+        else if (hubTarget != null)
+        {
+            hubTarget.Deselect();
+            targetTower = null;
+            hubTarget = null;
+            ui.TargetTower = null;
+        }
     }
 
     #endregion

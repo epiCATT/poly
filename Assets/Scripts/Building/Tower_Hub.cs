@@ -93,10 +93,10 @@ public class Tower_Hub : MonoBehaviour {
         Spawner.Move(target, proportion);
     }
 
-    public void Select(bool main)
+    public void Select(Color color)
     {
-        Circle.Select(main);
-        if (main && Data.Type == TowerData.BuildingType.Firewall)
+        Circle.Select(color);
+        if (Data.Type == TowerData.BuildingType.Firewall)
             FWTrigger.Select();
     }
 

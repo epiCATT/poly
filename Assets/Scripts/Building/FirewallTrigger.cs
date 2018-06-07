@@ -112,7 +112,7 @@ public class FirewallTrigger : MonoBehaviour {
 
     public void UpdateRange(float size)
     {
-        transform.localScale = new Vector3(size, size, size);
+        Sphere.localScale = new Vector3(size, size, size);
     }
 
     #endregion
