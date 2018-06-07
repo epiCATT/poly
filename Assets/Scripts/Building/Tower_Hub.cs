@@ -16,6 +16,7 @@ public class Tower_Hub : MonoBehaviour {
     // Subscripts
     private TowerData Data;
     private TowerBehavior TBehavior;
+    private TowerUI UI;
     private TowerAppearance Appearance;
     private UnitSpawner Spawner;
     private SelectionCircle Circle;
@@ -62,6 +63,8 @@ public class Tower_Hub : MonoBehaviour {
         Particles.PlaySwitchjoueur();
 
         Appearance.ActualizeBody();
+
+        UI.ActualizeLayer();
 
         if (isLab)
             Data.ControllerData.GetLab();
@@ -119,6 +122,7 @@ public class Tower_Hub : MonoBehaviour {
         Circle = GetComponentInChildren<SelectionCircle>();
         Particles = GetComponentInChildren<TowerParticles>();
         FWTrigger = GetComponentInChildren<FirewallTrigger>();
+        UI = GetComponentInChildren<TowerUI>();
     }
 
     //private void InitializeRules() { }

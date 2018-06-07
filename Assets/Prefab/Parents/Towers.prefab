@@ -53,8 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseGenerationTime: 3
   GeneratorCap: 50
-  FirewallRange: 0
-  FirewallRateOfFire: 0
+  FirewallRange: 30
+  FirewallRateOfFire: 0.8
   TinkerTime: 3
   ConvertionCost: 30
   UpgradeCost1: 40

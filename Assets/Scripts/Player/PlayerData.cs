@@ -17,10 +17,6 @@ public class PlayerData : MonoBehaviour {
     private float combatPower;
 
 
-    // Donnees d'initialization
-    public int StartingUnits;
-    public int StartingLabs;
-
     #region Getters
 
     public float NumberOfUnits { get { return numberOfUnits; } }
@@ -30,25 +26,15 @@ public class PlayerData : MonoBehaviour {
     // START
     void Start()
     {
-        //InitAllInfos();
-        //numberOfUnits = StartingUnits;
-        //possessedLabs = StartingLabs;
         ActualizeCombatPower();
     }
 
 
     #region Methods
 
-    public void InitAllInfos()
-    {
-        // TO DO
-        throw new System.NotImplementedException();
-    }
-
     public void AddUnits(float nOfUnit)
     {
         numberOfUnits += nOfUnit;
-        //ActualizeUI();
     }
 
     public void GetLab()

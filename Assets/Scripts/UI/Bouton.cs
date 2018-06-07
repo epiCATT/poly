@@ -56,13 +56,14 @@ public class Bouton : MonoBehaviour {
 
     // AWAKE
     void Awake() {
+        
         InitializeData();
     }
 
     // START
+
     void Start() {
-        //InitializeScripts();
-		//InitializeRules();
+        
     }
 
     // UPDATE
@@ -93,23 +94,25 @@ public class Bouton : MonoBehaviour {
             MainText.text = "Meet the Generator";
             text2.text = "You can see that the tower unit number is increasing because the tower is a generator";
             GeneratorTEST.SetActive(true);
-
+            FirewallTEST.SetActive(false);
+            Units.SetActive(false);
             Histo.SetActive(false);
             LaboTEST.SetActive(false);
 
         }
         if (count == 1)
         {
-            MainText.text = "Meet the Firewall";
-            FirewallTEST.SetActive(true);
-            Units.SetActive(true);
-            Panel3.SetActive(false);
+            MainText.text = "Meet the Lab";
+            text2.text = "The lab increases the combat power of your units. ";
+            LaboTEST.SetActive(true);
             GeneratorTEST.SetActive(false);
         }
         if (count == 2)
         {
             MainText.text = "Your team's color is red, therefore your buildings are red.";
             FirewallTEST.SetActive(false);
+            Panel3.SetActive(false);
+            LaboTEST.SetActive(false);
             Units.SetActive(false);
             Tower1.SetActive(true);
             
@@ -183,7 +186,7 @@ public class Bouton : MonoBehaviour {
             
             
         }
-        if (count == 8)
+        if (count == 9)
         {
             
             SceneManager.LoadScene("MenuPrincipal");

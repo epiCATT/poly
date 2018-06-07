@@ -71,7 +71,7 @@ public class BulletData : MonoBehaviour {
     #region Subfunctions
 
     private void InitializeData() {
-        GetComponent<Renderer>().material.color = ControllerData.Color;
+        GetComponentInChildren<Renderer>().material.color = ControllerData.Color;
         GetComponent<Transform>().Translate(new Vector3(0f, 5f, 0f));
     }
 

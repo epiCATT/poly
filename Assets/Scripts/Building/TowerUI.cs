@@ -30,6 +30,7 @@ public class TowerUI : MonoBehaviour {
     void Start () {
         InitializeScripts();
         ActualizeUI();
+        ActualizeLayer();
 	}
 	
 
@@ -44,6 +45,11 @@ public class TowerUI : MonoBehaviour {
     {
         int population = Mathf.RoundToInt(Data.Population);
         populationText.text = population.ToString();
+    }
+
+    public void ActualizeLayer()
+    {
+        gameObject.layer = 7 + Data.ControllerData.PlayerNumber;
     }
 
     #endregion
