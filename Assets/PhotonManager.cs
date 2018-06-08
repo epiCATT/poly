@@ -121,11 +121,20 @@ public class PhotonManager : MonoBehaviour {
             else
             {
                 // Generating player
+
                 PhotonNetwork.playerName = PlayerName.text;
-                //Hashtable PlayerProperties = new Hashtable() { { "Color", ColorPicker.Color }, { "Ready", false } };
-                //PhotonNetwork.SetPlayerCustomProperties(PlayerProperties);
+                Color choosenColor = ColorPicker.Color;
+
+                Hashtable PlayerProperties = new Hashtable() {
+                    { "Color", new float[] { choosenColor.r,
+                                             choosenColor.g,
+                                             choosenColor.b } },
+                    { "Ready", false } };
+
+                PhotonNetwork.SetPlayerCustomProperties(PlayerProperties);
 
                 // Creating options
+
                 RoomOptions options = new RoomOptions();
                 options.MaxPlayers = expectedPlayers;
                 Hashtable RoomProperties = new Hashtable() { { "Map", MapName.captionText.text } };
@@ -212,6 +221,11 @@ public class PhotonManager : MonoBehaviour {
         CreateButton.gameObject.SetActive(b);
         AvailableRoomsPanel.SetActive(b);
         LeaveButton.gameObject.SetActive(!b);
+    }
+
+    private Color decodeColor(float[] color)
+    {
+        return new Color(color[0], color[1], color[2]);
     }
 
     #endregion
