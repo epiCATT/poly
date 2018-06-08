@@ -32,8 +32,13 @@ public class PhotonManager : MonoBehaviour {
     public Text StateText;
     public Text ErrorText;
 
+    public GameObject RoomInfoPrefab;
+    public GameObject ContentOfScrollView;
+
+
     // Dynamic Data
     private RoomInfo[] roomsList;
+    private List<GameObject> roomInfoObjects;
 
     // Subscripts
 
@@ -69,6 +74,8 @@ public class PhotonManager : MonoBehaviour {
     void OnReceivedRoomListUpdate()
     {
         roomsList = PhotonNetwork.GetRoomList();
+        ClearRoomList();
+        CreateRoomList();
     }
 
     #endregion
@@ -132,6 +139,25 @@ public class PhotonManager : MonoBehaviour {
     private void MaskError()
     {
         ErrorText.enabled = false;
+    }
+
+    private void CreateRoomList()
+    {
+        foreach (RoomInfo roomInfo in roomsList)
+        {
+            GameObject roomInfoObject = Instantiate(RoomInfoPrefab, ContentOfScrollView.transform);
+            roomInfoObject.GetComponent<RoomInfoManager>().UpdateRoomInfo();
+            roomInfoObjects.Add(roomInfoObject);
+        }
+    }
+
+    private void ClearRoomList()
+    {
+        foreach (GameObject roomInfoObject in roomInfoObjects)
+        {
+            Destroy(roomInfoObject);
+        }
+        roomInfoObjects.Clear();
     }
 
     #endregion
