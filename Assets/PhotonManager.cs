@@ -73,6 +73,7 @@ public class PhotonManager : MonoBehaviour {
 
     void OnReceivedRoomListUpdate()
     {
+        Debug.Log("Received List Update");
         roomsList = PhotonNetwork.GetRoomList();
         ClearRoomList();
         CreateRoomList();
@@ -119,6 +120,7 @@ public class PhotonManager : MonoBehaviour {
 
     private void InitializeData() {
         PhotonNetwork.ConnectUsingSettings("0");
+        roomInfoObjects = new List<GameObject>();
     }
 
 	//private void InitializeScripts() { }
@@ -146,7 +148,9 @@ public class PhotonManager : MonoBehaviour {
         foreach (RoomInfo roomInfo in roomsList)
         {
             GameObject roomInfoObject = Instantiate(RoomInfoPrefab, ContentOfScrollView.transform);
-            roomInfoObject.GetComponent<RoomInfoManager>().UpdateRoomInfo();
+            RoomInfoManager roomInfoManager = roomInfoObject.GetComponent<RoomInfoManager>();
+            roomInfoManager.thisRoomInfo = roomInfo;
+            roomInfoManager.UpdateRoomInfo();
             roomInfoObjects.Add(roomInfoObject);
         }
     }

@@ -11,7 +11,7 @@ public class RoomInfoManager : MonoBehaviour {
     #region Declaration
 
     // Static Data
-    public RoomInfo RoomInfo;
+    public RoomInfo thisRoomInfo;
 
     public Text RoomText;
     public Text MapText;
@@ -58,12 +58,10 @@ public class RoomInfoManager : MonoBehaviour {
 
     public void UpdateRoomInfo()
     {
-        RoomText.text = RoomInfo.Name;
-        PlayerText.text = RoomInfo.PlayerCount + "/" + RoomInfo.MaxPlayers;
-
-        object MapName;
-        if (RoomInfo.CustomProperties.TryGetValue("MapName", out MapName))
-            MapText.text = MapName.ToString();
+        RoomText.text = thisRoomInfo.Name;
+        PlayerText.text = thisRoomInfo.PlayerCount + "/" + thisRoomInfo.MaxPlayers;
+        Debug.Log(thisRoomInfo.CustomProperties["MapName"]);
+        MapText.text = (string)thisRoomInfo.CustomProperties["MapName"];
     }
 
     #endregion
