@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222000839191852882}
   - component: {fileID: 114880495341967784}
   m_Layer: 5
-  m_Name: Join
+  m_Name: Load
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114599958799013092}
   - component: {fileID: 114599570161815412}
   m_Layer: 5
-  m_Name: JoinButton
+  m_Name: LoadButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295,6 +295,8 @@ MonoBehaviour:
   RoomText: {fileID: 114053647191373218}
   MapText: {fileID: 114864500540101946}
   PlayerText: {fileID: 114570277868328578}
+  RoomName: {fileID: 0}
+  MapName: {fileID: 0}
 --- !u!114 &114570277868328578
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -366,7 +368,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114599958799013092}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114482498017797694}
+        m_MethodName: SetRoomInfos
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114599958799013092
@@ -483,7 +496,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Join
+  m_Text: Load
 --- !u!114 &114977575670120588
 MonoBehaviour:
   m_ObjectHideFlags: 1

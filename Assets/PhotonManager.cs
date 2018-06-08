@@ -21,9 +21,9 @@ public class PhotonManager : MonoBehaviour {
 
     [Header("Player Inputs")]
 
-    public Text PlayerName;
-    public Text RoomName;
-    public Text MapName;
+    public InputField PlayerName;
+    public InputField RoomName;
+    public Dropdown MapName;
 
     public ColorPicker ColorPicker;
 
@@ -34,6 +34,11 @@ public class PhotonManager : MonoBehaviour {
 
     public GameObject RoomInfoPrefab;
     public GameObject ContentOfScrollView;
+
+    [Header("UI Management")]
+    public Button CreateButton;
+    public Button LeaveButton;
+    public GameObject AvailableRoomsPanel;
 
 
     // Dynamic Data
@@ -79,6 +84,22 @@ public class PhotonManager : MonoBehaviour {
         CreateRoomList();
     }
 
+    void OnJoinedLobby()
+    {
+        if (PhotonNetwork.playerName != "")
+            GetPlayerInfos();
+    }
+
+    void OnJoinedRoom()
+    {
+        SetInteractable(false);
+    }
+
+    void OnPhotonJoinFailed()
+    {
+        PrintError("Couldn't join room : may be full, try another one.");
+    }
+
     #endregion
 
 
@@ -95,22 +116,33 @@ public class PhotonManager : MonoBehaviour {
         else
         {
             byte expectedPlayers;
-            if (!ExpectedPlayersOnMap.TryGetValue(MapName.text, out expectedPlayers))
+            if (!ExpectedPlayersOnMap.TryGetValue(MapName.captionText.text, out expectedPlayers))
                 PrintError("Please choose a map.");
             else
             {
+                // Generating player
+                PhotonNetwork.playerName = PlayerName.text;
+                //Hashtable PlayerProperties = new Hashtable() { { "Color", ColorPicker.Color }, { "Ready", false } };
+                //PhotonNetwork.SetPlayerCustomProperties(PlayerProperties);
+
                 // Creating options
                 RoomOptions options = new RoomOptions();
                 options.MaxPlayers = expectedPlayers;
-                options.CustomRoomProperties = new Hashtable() { { "MapName", MapName.text } };
+                Hashtable RoomProperties = new Hashtable() { { "Map", MapName.captionText.text } };
+                options.CustomRoomProperties = RoomProperties;
+                options.CustomRoomPropertiesForLobby = new string[] { "Map" };
 
                 // Generating Room
                 if (PhotonNetwork.JoinOrCreateRoom(RoomName.text, options, PhotonNetwork.lobby))
-                    MaskError();
-                else
-                    PrintError("Failed to join room : it may be full, try a different name.");
+                    ClearError();
             }
         }
+    }
+
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+        SetInteractable(true);
     }
 
     #endregion
@@ -131,6 +163,12 @@ public class PhotonManager : MonoBehaviour {
         StateText.text = PhotonNetwork.connectionStateDetailed.ToString();
     }
 
+    private void GetPlayerInfos()
+    {
+        PlayerName.text = PhotonNetwork.playerName;
+        ColorPicker.SetColor((Color)PhotonNetwork.player.CustomProperties["Color"]);
+    }
+
     private void PrintError(string error)
     {
         if (!ErrorText.IsActive())
@@ -138,7 +176,7 @@ public class PhotonManager : MonoBehaviour {
         ErrorText.text = error;
     }
 
-    private void MaskError()
+    private void ClearError()
     {
         ErrorText.enabled = false;
     }
@@ -150,6 +188,8 @@ public class PhotonManager : MonoBehaviour {
             GameObject roomInfoObject = Instantiate(RoomInfoPrefab, ContentOfScrollView.transform);
             RoomInfoManager roomInfoManager = roomInfoObject.GetComponent<RoomInfoManager>();
             roomInfoManager.thisRoomInfo = roomInfo;
+            roomInfoManager.RoomName = RoomName;
+            roomInfoManager.MapName = MapName;
             roomInfoManager.UpdateRoomInfo();
             roomInfoObjects.Add(roomInfoObject);
         }
@@ -158,10 +198,20 @@ public class PhotonManager : MonoBehaviour {
     private void ClearRoomList()
     {
         foreach (GameObject roomInfoObject in roomInfoObjects)
-        {
             Destroy(roomInfoObject);
-        }
+
         roomInfoObjects.Clear();
+    }
+
+    private void SetInteractable(bool b)
+    {
+        PlayerName.interactable = b;
+        RoomName.interactable = b;
+        MapName.interactable = b;
+        ColorPicker.SetInteractable(b);
+        CreateButton.gameObject.SetActive(b);
+        AvailableRoomsPanel.SetActive(b);
+        LeaveButton.gameObject.SetActive(!b);
     }
 
     #endregion

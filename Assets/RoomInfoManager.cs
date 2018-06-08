@@ -17,6 +17,9 @@ public class RoomInfoManager : MonoBehaviour {
     public Text MapText;
     public Text PlayerText;
 
+    public InputField RoomName;
+    public Dropdown MapName;
+
     // Dynamic Data
 
 
@@ -60,19 +63,24 @@ public class RoomInfoManager : MonoBehaviour {
     {
         RoomText.text = thisRoomInfo.Name;
         PlayerText.text = thisRoomInfo.PlayerCount + "/" + thisRoomInfo.MaxPlayers;
-        Debug.Log(thisRoomInfo.CustomProperties["MapName"]);
-        MapText.text = (string)thisRoomInfo.CustomProperties["MapName"];
+        MapText.text = (string)thisRoomInfo.CustomProperties["Map"];
+    }
+
+    public void SetRoomInfos()
+    {
+        RoomName.text = RoomText.text;
+        MapName.captionText.text = MapText.text;
     }
 
     #endregion
 
 
     #region Subfunctions
-    
-	//private void InitializeData() { }
-	//private void InitializeScripts() { }
-	//private void InitializeRules() { }
-    
+
+    //private void InitializeData() { }
+    //private void InitializeScripts() { }
+    //private void InitializeRules() { }
+
     #endregion
 
 }

@@ -58,12 +58,27 @@ public class ColorPicker : MonoBehaviour {
         Preview.color = Color;
     }
 
+    public void SetColor(Color color)
+    {
+        Color = color;
+        Scrollbars[0].value = color.r;
+        Scrollbars[1].value = color.g;
+        Scrollbars[2].value = color.b;
+    }
+
+    public void SetInteractable(bool b)
+    {
+        Scrollbars[0].interactable = b;
+        Scrollbars[1].interactable = b;
+        Scrollbars[2].interactable = b;
+    }
+
     #endregion
 
 
     #region Subfunctions
-    
-	private void InitializeData() {
+
+    private void InitializeData() {
         Scrollbars = GetComponentsInChildren<Scrollbar>();
     }
 
