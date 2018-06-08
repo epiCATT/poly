@@ -33,17 +33,26 @@ public class PhotonManager : MonoBehaviour {
     public Text ErrorText;
 
     public GameObject RoomInfoPrefab;
-    public GameObject ContentOfScrollView;
+    public GameObject RoomsScrollContent;
+
+    public GameObject PlayerInfoPrefab;
+    public GameObject PlayerScrollContent;
 
     [Header("UI Management")]
     public Button CreateButton;
     public Button LeaveButton;
+    public Text TitleText;
     public GameObject AvailableRoomsPanel;
+    public GameObject AvailablePlayersPanel;
 
 
     // Dynamic Data
+
     private RoomInfo[] roomsList;
     private List<GameObject> roomInfoObjects;
+
+    private PhotonPlayer[] playersList;
+    private List<GameObject> playerInfoObjects;
 
     // Subscripts
 
@@ -78,7 +87,6 @@ public class PhotonManager : MonoBehaviour {
 
     void OnReceivedRoomListUpdate()
     {
-        Debug.Log("Received List Update");
         roomsList = PhotonNetwork.GetRoomList();
         ClearRoomList();
         CreateRoomList();
@@ -88,16 +96,28 @@ public class PhotonManager : MonoBehaviour {
     {
         if (PhotonNetwork.playerName != "")
             GetPlayerInfos();
+        SetInteractable(true);
     }
 
     void OnJoinedRoom()
     {
         SetInteractable(false);
+        UpdatePlayerList();
     }
 
-    void OnPhotonJoinFailed()
+    void OnPhotonJoinRoomFailed()
     {
-        PrintError("Couldn't join room : may be full, try another one.");
+        PrintError("Couldn't join room : it may be already full.");
+    }
+
+    void OnPhotonPlayerConnected()
+    {
+        UpdatePlayerList();
+    }
+
+    void OnPhotonPlayerPropertiesChanged()
+    {
+        UpdatePlayerList();
     }
 
     #endregion
@@ -117,7 +137,7 @@ public class PhotonManager : MonoBehaviour {
         {
             byte expectedPlayers;
             if (!ExpectedPlayersOnMap.TryGetValue(MapName.captionText.text, out expectedPlayers))
-                PrintError("Please choose a map.");
+                PrintError("Please choose a valid map.");
             else
             {
                 // Generating player
@@ -154,6 +174,13 @@ public class PhotonManager : MonoBehaviour {
         SetInteractable(true);
     }
 
+    public void ToggleReady()
+    {
+        Hashtable customProperties = PhotonNetwork.player.CustomProperties;
+        customProperties["Ready"] = !(bool)customProperties["Ready"];
+        PhotonNetwork.player.SetCustomProperties(customProperties);
+    }
+
     #endregion
 
 
@@ -162,6 +189,7 @@ public class PhotonManager : MonoBehaviour {
     private void InitializeData() {
         PhotonNetwork.ConnectUsingSettings("0");
         roomInfoObjects = new List<GameObject>();
+        playerInfoObjects = new List<GameObject>();
     }
 
 	//private void InitializeScripts() { }
@@ -194,7 +222,7 @@ public class PhotonManager : MonoBehaviour {
     {
         foreach (RoomInfo roomInfo in roomsList)
         {
-            GameObject roomInfoObject = Instantiate(RoomInfoPrefab, ContentOfScrollView.transform);
+            GameObject roomInfoObject = Instantiate(RoomInfoPrefab, RoomsScrollContent.transform);
             RoomInfoManager roomInfoManager = roomInfoObject.GetComponent<RoomInfoManager>();
             roomInfoManager.thisRoomInfo = roomInfo;
             roomInfoManager.RoomName = RoomName;
@@ -212,15 +240,46 @@ public class PhotonManager : MonoBehaviour {
         roomInfoObjects.Clear();
     }
 
+    private void CreatePlayerList()
+    {
+        foreach (PhotonPlayer player in playersList)
+        {
+            GameObject playerInfoObject = Instantiate(PlayerInfoPrefab, PlayerScrollContent.transform);
+            PlayerInfoManager playerInfoManager = playerInfoObject.GetComponent<PlayerInfoManager>();
+            playerInfoManager.thisPlayer = player;
+            playerInfoManager.UpdatePlayerInfo();
+            playerInfoObjects.Add(playerInfoObject);
+        }
+    }
+
+    private void ClearPlayerList()
+    {
+        foreach (GameObject playerInfoObject in playerInfoObjects)
+            Destroy(playerInfoObject);
+
+        playerInfoObjects.Clear();
+    }
+
+    private void UpdatePlayerList()
+    {
+        playersList = PhotonNetwork.playerList;
+        ClearPlayerList();
+        CreatePlayerList();
+    }
+
     private void SetInteractable(bool b)
     {
         PlayerName.interactable = b;
         RoomName.interactable = b;
         MapName.interactable = b;
         ColorPicker.SetInteractable(b);
+
         CreateButton.gameObject.SetActive(b);
-        AvailableRoomsPanel.SetActive(b);
         LeaveButton.gameObject.SetActive(!b);
+
+        TitleText.text = b ? "Available Rooms" : "Available Players";
+        AvailableRoomsPanel.SetActive(b);
+        AvailablePlayersPanel.SetActive(!b);
     }
 
     private Color decodeColor(float[] color)
