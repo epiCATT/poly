@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class PlayerData : Photon.MonoBehaviour
 {
-
     // Donnees statiques
     public GameManager GManager;
     public int PlayerNumber;
@@ -31,7 +30,6 @@ public class PlayerData : Photon.MonoBehaviour
     // START
     void Start()
     {
-        GManager = GetComponent<GameManager>();
         ActualizeCombatPower();
         if (!photonView.isMine)
             gameObject.SetActive(false);
@@ -44,7 +42,7 @@ public class PlayerData : Photon.MonoBehaviour
     {
         numberOfUnits += nOfUnit;
         if (numberOfUnits == 0)
-            GManager.Eliminate(this.gameObject);
+            GManager.Eliminate(gameObject);
     }
 
     public void GetLab()
