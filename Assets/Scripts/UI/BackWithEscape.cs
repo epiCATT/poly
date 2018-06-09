@@ -1,21 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using ExitGames.Client.Photon;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
+using UnityEngine.SceneManagement;
 
-public class TestHashtable : MonoBehaviour {
+public class BackWithEscape : MonoBehaviour {
 
 
     #region Declaration
 
     // Static Data
-    public Text InText;
-    public Text OutText;
+    public string BackScene;
 
     // Dynamic Data
-    private Hashtable table;
+
 
     // Subscripts
 
@@ -25,19 +22,22 @@ public class TestHashtable : MonoBehaviour {
 
     // AWAKE
     void Awake() {
-        InitializeData();
+        //InitializeData();
     }
 
     // START
     void Start() {
         //InitializeScripts();
-        //InitializeRules();
-        table.Add("txt", InText.text);
-        OutText.text = (string)table["txt"];
+	    //InitializeRules();
     }
 
     // UPDATE
     void Update() {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            PhotonNetwork.Disconnect();
+            SceneManager.LoadScene(BackScene);
+        }   
     }
 
 
@@ -61,10 +61,7 @@ public class TestHashtable : MonoBehaviour {
 
     #region Subfunctions
     
-	private void InitializeData() {
-        table = new Hashtable();
-    }
-
+	//private void InitializeData() { }
 	//private void InitializeScripts() { }
 	//private void InitializeRules() { }
     

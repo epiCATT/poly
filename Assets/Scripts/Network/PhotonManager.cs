@@ -118,6 +118,8 @@ public class PhotonManager : MonoBehaviour {
     void OnPhotonPlayerPropertiesChanged()
     {
         UpdatePlayerList();
+        if (AllPlayersAreReady())
+            LoadMap();
     }
 
     #endregion
@@ -188,6 +190,7 @@ public class PhotonManager : MonoBehaviour {
 
     private void InitializeData() {
         PhotonNetwork.ConnectUsingSettings("0");
+        PhotonNetwork.automaticallySyncScene = true;
         roomInfoObjects = new List<GameObject>();
         playerInfoObjects = new List<GameObject>();
     }
@@ -203,7 +206,7 @@ public class PhotonManager : MonoBehaviour {
     private void GetPlayerInfos()
     {
         PlayerName.text = PhotonNetwork.playerName;
-        ColorPicker.SetColor((Color)PhotonNetwork.player.CustomProperties["Color"]);
+        ColorPicker.SetColor(decodeColor((float[])PhotonNetwork.player.CustomProperties["Color"]));
     }
 
     private void PrintError(string error)
@@ -285,6 +288,33 @@ public class PhotonManager : MonoBehaviour {
     private Color decodeColor(float[] color)
     {
         return new Color(color[0], color[1], color[2]);
+    }
+
+    private void LoadMap()
+    {
+        if (PhotonNetwork.isMasterClient)
+        {
+            string map = (string)PhotonNetwork.room.CustomProperties["Map"];
+            PhotonNetwork.LoadLevel(map);
+        }
+    }
+
+    private bool AllPlayersAreReady()
+    {
+        Room room = PhotonNetwork.room;
+
+        int expectedPlayers = room.MaxPlayers;
+
+        if (room.PlayerCount != expectedPlayers)
+            return false;
+
+        int i = 0;
+        while (i < expectedPlayers && (bool)playersList[i].CustomProperties["Ready"])
+        {
+            i++;
+        }
+
+        return i == expectedPlayers;
     }
 
     #endregion
