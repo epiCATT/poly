@@ -42,4 +42,6 @@ MonoBehaviour:
   - Move
   - BeginGame
   - AssignOwnership
+  - Congratule
+  - Shame
   DisableAutoOpenWizard: 1

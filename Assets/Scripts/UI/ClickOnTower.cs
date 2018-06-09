@@ -11,9 +11,6 @@ public class ClickOnTower : Photon.MonoBehaviour
     #region Declaration
 
     // Static Data
-    public PhotonView View;
-    public GameObject CanvasJoueur;
-    public GameObject CanvasPause;
 
     // Dynamic Data
     private GameObject selectedTower;
@@ -64,12 +61,6 @@ public class ClickOnTower : Photon.MonoBehaviour
 
     private void InitializeData()
     {
-        if (!View.isMine)
-        {
-            gameObject.SetActive(false);
-            CanvasJoueur.SetActive(false);
-            CanvasPause.SetActive(false);
-        }
         cameraJoueur = GetComponent<Camera>();
     }
 

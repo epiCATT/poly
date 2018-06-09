@@ -299,6 +299,7 @@ public class PhotonManager : MonoBehaviour {
     {
         if (PhotonNetwork.isMasterClient)
         {
+            PhotonNetwork.room.IsVisible = false;
             string map = (string)PhotonNetwork.room.CustomProperties["Map"];
             PhotonNetwork.LoadLevelAsync(map);
         }

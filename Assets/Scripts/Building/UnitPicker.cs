@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitPicker : MonoBehaviour {
+public class UnitPicker : Photon.MonoBehaviour {
 
     #region Declaration
 
@@ -80,10 +80,9 @@ public class UnitPicker : MonoBehaviour {
                     // If attacker wins
                     else
                     {
-                        float leftover = attackerCombatPower - population;
                         Data.AddUnits(-population);
                         Hub.ChangeController(unitController);
-                        Data.AddUnits(leftover);
+                        Data.AddUnits(1);
                     }
 
                     // Manage cooldown until harmonization

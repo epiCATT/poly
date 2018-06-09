@@ -8,8 +8,7 @@ public class PlayerData : Photon.MonoBehaviour
 {
 
     // Donnees statiques
-    public PlayerData Instance;
-
+    public GameManager GManager;
     public int PlayerNumber;
     public Color Color;
 
@@ -20,7 +19,7 @@ public class PlayerData : Photon.MonoBehaviour
     private float combatPower;
 
     // Subscripts
-    private GameManager GManager;
+    
 
 
     #region Getters
@@ -32,10 +31,10 @@ public class PlayerData : Photon.MonoBehaviour
     // START
     void Start()
     {
-        if (photonView.isMine)
-            Instance = this;
-        GManager = GetComponentInParent<GameManager>();
+        GManager = GetComponent<GameManager>();
         ActualizeCombatPower();
+        if (!photonView.isMine)
+            gameObject.SetActive(false);
     }
 
 
@@ -44,7 +43,7 @@ public class PlayerData : Photon.MonoBehaviour
     public void AddUnits(float nOfUnit)
     {
         numberOfUnits += nOfUnit;
-        if (numberOfUnits <= 0)
+        if (numberOfUnits == 0)
             GManager.Eliminate(this.gameObject);
     }
 

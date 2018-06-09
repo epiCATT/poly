@@ -45,8 +45,7 @@ public class Histo : MonoBehaviour {
     }
 
     // UPDATE
-    void Update() {
-
+    void LateUpdate() {
         Actualize();
     }
 
@@ -109,11 +108,11 @@ public class Histo : MonoBehaviour {
 
         for (int j = 0; j < nplayer; j++)
         {
-            TextJoueurs[j].text =  playerDataList[j].NumberOfUnits.ToString();
+            TextJoueurs[j].text =  ((int)playerDataList[j].NumberOfUnits).ToString();
             TextCombat[j].text =  playerDataList[j].CombatPower.ToString();
             proportion = playerDataList[j].NumberOfUnits / total * MaxWidth;
 
-            ImagesJoueurs[j].rectTransform.sizeDelta = new Vector2(proportion, 30f);
+            ImagesJoueurs[j].rectTransform.sizeDelta = new Vector2(Mathf.Round(proportion), 30f);
         }
         
     }
@@ -126,7 +125,7 @@ public class Histo : MonoBehaviour {
 	private void InitializeData() {
         playerDataList = Players.GetComponentsInChildren<PlayerData>();
         nplayer = playerDataList.Length; 
-     }
+    }
 
 	//private void InitializeScripts() { }
     //private void InitializeRules() { }
