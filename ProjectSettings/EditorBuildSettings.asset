@@ -8,15 +8,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/MenuPrincipal.unity
     guid: 4c680267784ddfa4d893ee822e98ab2f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menus/SinglePlayer.unity
     guid: 3fdb0a07e12cb9543928dfcf30221afd
   - enabled: 1
-    path: Assets/Scenes/Map/Board.unity
-    guid: f117c3063a1302745aaf8105447af137
-  - enabled: 1
+    path: Assets/Scenes/Menus/LobbyMultijoueur.unity
+    guid: 564820aa385f31f44b7b595cec727018
+  - enabled: 0
     path: Assets/Scenes/Menus/Settings.unity
     guid: 40539635c7dbfd24aada57f06fcedda8
-  - enabled: 1
-    path: Assets/Scenes/Map/Tuto1.unity
+  - enabled: 0
+    path: Assets/Scenes/Map/Single/Tuto1.unity
     guid: e1e00523e92077e438d45ee8d732d03d
+  - enabled: 0
+    path: Assets/Scenes/Map/Single/Board.unity
+    guid: f117c3063a1302745aaf8105447af137
+  - enabled: 1
+    path: Assets/Scenes/Map/Multi/Chess Board.unity
+    guid: ebb83fdb9dcb4a947a1d0926584609ce
