@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-public class ClickOnTower : MonoBehaviour
+public class ClickOnTower : Photon.MonoBehaviour
 {
 
 
     #region Declaration
 
     // Static Data
-
+    public PhotonView View;
 
     // Dynamic Data
     private GameObject selectedTower;
@@ -19,7 +19,6 @@ public class ClickOnTower : MonoBehaviour
     private Tower_Hub hubMain;
     private Tower_Hub hubTarget;
     private Camera cameraJoueur;
-    Rect screenRect;
 
     // Subscripts
     private UI ui;
@@ -62,8 +61,9 @@ public class ClickOnTower : MonoBehaviour
 
     private void InitializeData()
     {
+        if (!View.isMine)
+            gameObject.SetActive(false);
         cameraJoueur = GetComponent<Camera>();
-        screenRect = new Rect(0, 0, Screen.width, Screen.height);
     }
 
     private void InitializeScripts()
@@ -130,11 +130,6 @@ public class ClickOnTower : MonoBehaviour
     {
         int playerNumber = playerData.PlayerNumber;
         cameraJoueur.cullingMask |= (1 << (7 + playerNumber));
-    }
-
-    private bool MouseScreenCheck()
-    {
-        return !screenRect.Contains(Input.mousePosition);
     }
 
     private void SelectMain(bool succes)

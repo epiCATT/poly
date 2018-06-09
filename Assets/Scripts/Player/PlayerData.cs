@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class PlayerData : MonoBehaviour {
+public class PlayerData : Photon.MonoBehaviour
+{
 
     // Donnees statiques
+    public PlayerData Instance;
+
     public int PlayerNumber;
     public Color Color;
-    
+
 
     // Donnees dynamiques
     private float numberOfUnits;
@@ -29,6 +32,8 @@ public class PlayerData : MonoBehaviour {
     // START
     void Start()
     {
+        if (photonView.isMine)
+            Instance = this;
         GManager = GetComponentInParent<GameManager>();
         ActualizeCombatPower();
     }

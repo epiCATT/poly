@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
 
-
+    public PhotonView View;
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
 
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(View.isMine && Input.GetKeyDown(KeyCode.Escape))
         {
             Actualize();
         }
