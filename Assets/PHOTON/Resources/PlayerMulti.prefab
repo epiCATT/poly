@@ -1821,6 +1821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277e9b226fa2d0a428c53ede82b687bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  View: {fileID: 114748230586722558}
   pauseMenuUI: {fileID: 1131039747951700}
 --- !u!114 &114231555852975000
 MonoBehaviour:
@@ -3223,6 +3224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b51c8c0afc4b7d4c9e2dcbb3857b3db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedView: {fileID: 0}
   SelectedTower: {fileID: 0}
   TargetTower: {fileID: 0}
 --- !u!114 &114796971811593654

@@ -16,6 +16,7 @@ public class ClickOnTower : Photon.MonoBehaviour
     // Dynamic Data
     private GameObject selectedTower;
     private GameObject targetTower;
+    private PhotonView selectedView;
     private Tower_Hub hubMain;
     private Tower_Hub hubTarget;
     private Camera cameraJoueur;
@@ -91,6 +92,7 @@ public class ClickOnTower : Photon.MonoBehaviour
                     SelectMain(false);
 
                     selectedTower = hit.transform.parent.gameObject;
+                    selectedView = selectedTower.GetPhotonView();
                     hubMain = selectedTower.GetComponent<Tower_Hub>();
 
                     if (hubMain.GetData.ControllerData == playerData)
@@ -137,6 +139,7 @@ public class ClickOnTower : Photon.MonoBehaviour
         if (succes)
         {
             ui.SelectedTower = hubMain;
+            ui.selectedView = selectedView;
             hubMain.Select(Color.white);
         }
         else if (hubMain != null)
@@ -145,6 +148,7 @@ public class ClickOnTower : Photon.MonoBehaviour
             selectedTower = null;
             hubMain = null;
             ui.SelectedTower = null;
+            ui.selectedView = null;
         }
     }
 

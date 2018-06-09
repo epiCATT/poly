@@ -65,11 +65,11 @@ public class TestController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            towerHub1.Spawn(Tower2.transform);
+            towerHub1.Spawn(Tower2.transform.position);
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            towerHub2.Spawn(Tower1.transform);
+            towerHub2.Spawn(Tower1.transform.position);
         }
     }
 }

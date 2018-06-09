@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224203160084311268}
   - component: {fileID: 222920681553951362}
   - component: {fileID: 114539827883817020}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 114361049071366124}
   - component: {fileID: 114428924197653094}
   - component: {fileID: 114683746485237250}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Etiquette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 114498024066411612}
   - component: {fileID: 114593795255236836}
   - component: {fileID: 114158280350857580}
+  - component: {fileID: 114562664213195678}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Tower
@@ -324,8 +325,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1758803883570154}
-  m_LocalRotation: {x: -0, y: 0.70202875, z: -0, w: 0.7121486}
-  m_LocalPosition: {x: 260.1, y: 40.00267, z: 213.925}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -22.7, y: 7.3, z: 22.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224546936766594708}
@@ -618,6 +619,32 @@ MonoBehaviour:
   Material1: {fileID: 2100000, guid: a67022c4e4fce2d4d9b393fc2859177a, type: 2}
   Material2: {fileID: 2100000, guid: d944cb0b35dfd4d428f59335895d8326, type: 2}
   Material3: {fileID: 2100000, guid: 25f340481dab92b49a393fe4fbd97735, type: 2}
+--- !u!114 &114562664213195678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1758803883570154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 1
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &114593795255236836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -662,9 +689,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca3c9ae47a81f34e97acc07db57db9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerID: 
+  Instance: {fileID: 0}
   InitialController: {fileID: 0}
-  StartingPopulation: 30
+  StartingPopulation: 50
   StartingType: 0
   StartingLevel: 0
 --- !u!114 &114896014462613628
@@ -678,6 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 758b62770f9b2fd4a924268f2f45e3d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Instance: {fileID: 0}
 --- !u!135 &135459208609787898
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class UnitData : MonoBehaviour {
 
     // Donnees statiques
-    public Transform Target;
+    public Vector3 Target;
     public Transform Origin;
     public GameObject Controller;
     private PlayerData controllerData;
@@ -26,7 +26,7 @@ public class UnitData : MonoBehaviour {
 	// UPDATE
 	void Update ()
     {
-        agent.SetDestination(Target.position);
+        agent.SetDestination(Target);
 	}
 
     #region Getter

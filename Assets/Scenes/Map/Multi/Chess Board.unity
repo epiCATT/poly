@@ -231,6 +231,16 @@ Prefab:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114562664213195678, guid: 86a5935a9f40d854da0708168501a991,
+        type: 2}
+      propertyPath: viewIdField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114562664213195678, guid: 86a5935a9f40d854da0708168501a991,
+        type: 2}
+      propertyPath: instantiationId
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86a5935a9f40d854da0708168501a991, type: 2}
   m_IsPrefabParent: 0
@@ -360,6 +370,16 @@ Prefab:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114562664213195678, guid: 86a5935a9f40d854da0708168501a991,
+        type: 2}
+      propertyPath: instantiationId
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114562664213195678, guid: 86a5935a9f40d854da0708168501a991,
+        type: 2}
+      propertyPath: viewIdField
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86a5935a9f40d854da0708168501a991, type: 2}
   m_IsPrefabParent: 0
@@ -423,6 +443,16 @@ Prefab:
     - target: {fileID: 1279706209578044, guid: 86a5935a9f40d854da0708168501a991, type: 2}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114562664213195678, guid: 86a5935a9f40d854da0708168501a991,
+        type: 2}
+      propertyPath: instantiationId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114562664213195678, guid: 86a5935a9f40d854da0708168501a991,
+        type: 2}
+      propertyPath: viewIdField
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86a5935a9f40d854da0708168501a991, type: 2}
@@ -589,28 +619,15 @@ Prefab:
       propertyPath: InitialController
       value: 
       objectReference: {fileID: 641619107}
-    - target: {fileID: 114884883451146976, guid: 86a5935a9f40d854da0708168501a991,
+    - target: {fileID: 114562664213195678, guid: 86a5935a9f40d854da0708168501a991,
         type: 2}
-      propertyPath: StartingPopulation
-      value: 50
+      propertyPath: viewIdField
+      value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 114884883451146976, guid: 86a5935a9f40d854da0708168501a991,
+    - target: {fileID: 114562664213195678, guid: 86a5935a9f40d854da0708168501a991,
         type: 2}
-      propertyPath: StartingType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114884883451146976, guid: 86a5935a9f40d854da0708168501a991,
-        type: 2}
-      propertyPath: StartingLevel
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084680117999338, guid: 86a5935a9f40d854da0708168501a991, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279706209578044, guid: 86a5935a9f40d854da0708168501a991, type: 2}
-      propertyPath: m_Layer
-      value: 0
+      propertyPath: instantiationId
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86a5935a9f40d854da0708168501a991, type: 2}
@@ -686,6 +703,16 @@ Prefab:
       propertyPath: StartingLevel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114562664213195678, guid: 86a5935a9f40d854da0708168501a991,
+        type: 2}
+      propertyPath: instantiationId
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114562664213195678, guid: 86a5935a9f40d854da0708168501a991,
+        type: 2}
+      propertyPath: viewIdField
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86a5935a9f40d854da0708168501a991, type: 2}
   m_IsPrefabParent: 0
@@ -698,6 +725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1282831279}
   - component: {fileID: 1282831280}
+  - component: {fileID: 1282831281}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -732,6 +760,32 @@ MonoBehaviour:
   Players: {fileID: 1626708710}
   Towers: {fileID: 1819867976}
   MainCanvas: {fileID: 1530932894}
+--- !u!114 &1282831281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1282831278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 9
+  instantiationId: 9
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1001 &1397305984
 Prefab:
   m_ObjectHideFlags: 0
@@ -905,6 +959,21 @@ Prefab:
         type: 2}
       propertyPath: StartingLevel
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114562664213195678, guid: 86a5935a9f40d854da0708168501a991,
+        type: 2}
+      propertyPath: instantiationId
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114562664213195678, guid: 86a5935a9f40d854da0708168501a991,
+        type: 2}
+      propertyPath: viewIdField
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114884883451146976, guid: 86a5935a9f40d854da0708168501a991,
+        type: 2}
+      propertyPath: StartingPopulation
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86a5935a9f40d854da0708168501a991, type: 2}
@@ -1106,7 +1175,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1061005701174964, guid: 607ac9d063c4e65409accf2e6597eda9, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 607ac9d063c4e65409accf2e6597eda9, type: 2}

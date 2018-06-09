@@ -7,7 +7,8 @@ public class TowerData : MonoBehaviour {
     #region Declaration
 
     // Static Data
-    public string towerID;
+    public TowerData Instance;
+
     public GameObject InitialController;
     public int StartingPopulation;
     public BuildingType StartingType;
@@ -73,6 +74,7 @@ public class TowerData : MonoBehaviour {
     public void ActualizeController()
     {
         controllerData = Controller.GetComponent<PlayerData>();
+        gameObject.GetPhotonView().TransferOwnership(controller.GetPhotonView().owner);
         // TO DO : Change Etiquette visibility.
     }
 
@@ -110,6 +112,7 @@ public class TowerData : MonoBehaviour {
 
     private void InitializeData()
     {
+        Instance = this;
         controller = InitialController;
         ActualizeController();
         population = StartingPopulation;

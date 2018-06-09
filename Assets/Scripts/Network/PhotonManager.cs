@@ -15,7 +15,7 @@ public class PhotonManager : MonoBehaviour {
     public Dictionary<string, byte> ExpectedPlayersOnMap = new Dictionary<string, byte>()
     {
         {"Chess Board", 2},
-        {"Ile Triple", 3},
+        {"Triple Island", 3},
         {"Quad Canyon", 4}
     };
 
@@ -295,7 +295,7 @@ public class PhotonManager : MonoBehaviour {
         if (PhotonNetwork.isMasterClient)
         {
             string map = (string)PhotonNetwork.room.CustomProperties["Map"];
-            PhotonNetwork.LoadLevel(map);
+            PhotonNetwork.LoadLevelAsync(map);
         }
     }
 

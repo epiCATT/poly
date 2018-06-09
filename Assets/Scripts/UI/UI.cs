@@ -9,6 +9,7 @@ public class UI : MonoBehaviour {
     #region Declaration
 
     // Static Data
+    public PhotonView selectedView;
     public Tower_Hub SelectedTower;
     public GameObject TargetTower;
 
@@ -42,7 +43,8 @@ public class UI : MonoBehaviour {
 	{
         if (SelectedTower != null && TargetTower != null)
         {
-            SelectedTower.Move(TargetTower.transform, 1f);
+            //SelectedTower.Move(TargetTower.transform, 1f);
+            selectedView.RPC("Move", PhotonTargets.AllViaServer, TargetTower.transform.position, 1f);
         }
 	}
 
@@ -50,7 +52,8 @@ public class UI : MonoBehaviour {
 	{
         if (SelectedTower != null && TargetTower != null)
         {
-            SelectedTower.Move(TargetTower.transform, 0.75f);
+            //SelectedTower.Move(TargetTower.transform, 0.75f);
+            selectedView.RPC("Move", PhotonTargets.AllViaServer, TargetTower.transform.position, 0.75f);
         }
     }
 
@@ -58,7 +61,8 @@ public class UI : MonoBehaviour {
 	{
         if (SelectedTower != null && TargetTower != null)
         {
-            SelectedTower.Move(TargetTower.transform, 0.5f);
+            //SelectedTower.Move(TargetTower.transform, 0.5f);
+            selectedView.RPC("Move", PhotonTargets.AllViaServer, TargetTower.transform.position, 0.5f);
         }
     }
 
@@ -66,7 +70,8 @@ public class UI : MonoBehaviour {
     {
         if (SelectedTower != null && TargetTower != null)
         {
-            SelectedTower.Move(TargetTower.transform, 0.25f);
+            //SelectedTower.Move(TargetTower.transform, 0.25f);
+            selectedView.RPC("Move", PhotonTargets.AllViaServer, TargetTower.transform.position, 0.25f);
         }
     }	
 
@@ -74,14 +79,16 @@ public class UI : MonoBehaviour {
 	{
         if (SelectedTower != null)
         {
-            SelectedTower.ChangeType(TowerData.BuildingType.Lab);
+            //SelectedTower.ChangeType(TowerData.BuildingType.Lab);
+            selectedView.RPC("ChangeType", PhotonTargets.AllViaServer, "Lab");
         }
     }
     public void ConvertToGenerator()
     {
         if (SelectedTower != null)
         { 
-            SelectedTower.ChangeType(TowerData.BuildingType.Generator);
+            //SelectedTower.ChangeType(TowerData.BuildingType.Generator);
+            selectedView.RPC("ChangeType", PhotonTargets.AllViaServer, "Generator");
         }
     }
 
@@ -89,7 +96,8 @@ public class UI : MonoBehaviour {
     {
         if (SelectedTower != null)
         {
-            SelectedTower.ChangeType(TowerData.BuildingType.Firewall);
+            //SelectedTower.ChangeType(TowerData.BuildingType.Firewall);
+            selectedView.RPC("ChangeType", PhotonTargets.AllViaServer, "Firewall");
         }
     }
 
@@ -97,8 +105,8 @@ public class UI : MonoBehaviour {
 	{
         if (SelectedTower != null)
         {
-            SelectedTower.LevelUP();
-            //SelectedTower.Select(Color.white);
+            //SelectedTower.LevelUP();
+            selectedView.RPC("LevelUP", PhotonTargets.AllViaServer);
         }
     }
 

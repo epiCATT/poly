@@ -13,8 +13,6 @@ public class NetworkGameManager : Photon.MonoBehaviour {
     public GameObject MainCanvas;
 
     // Dynamic Data
-    private PhotonPlayer[] PlayerList;
-    private Room ActualRoom;
     private PhotonView[] ViewList;
     private PlayerData[] PlayerDataList;
 
@@ -26,13 +24,18 @@ public class NetworkGameManager : Photon.MonoBehaviour {
 
     // AWAKE
     void Awake() {
-        //InitializeData();
+        InitializeData();
+        if (PhotonNetwork.isMasterClient)
+            photonView.RPC("AssignOwnership", PhotonTargets.AllViaServer, PhotonNetwork.playerList);
     }
 
     // START
     void Start() {
         //InitializeScripts();
-	    //InitializeRules();
+        //InitializeRules();
+
+        if (PhotonNetwork.isMasterClient)
+            photonView.RPC("BeginGame", PhotonTargets.AllViaServer);
     }
 
     // UPDATE
@@ -48,12 +51,6 @@ public class NetworkGameManager : Photon.MonoBehaviour {
 
     #region Event
 
-    private void OnLevelWasLoaded(int level)
-    {
-        InitializeData();
-        AssignOwnership();
-        BeginGame();
-    }
 
     #endregion
 
@@ -68,8 +65,6 @@ public class NetworkGameManager : Photon.MonoBehaviour {
     #region Subfunctions
 
     private void InitializeData() {
-        ActualRoom = PhotonNetwork.room;
-        PlayerList = PhotonNetwork.playerList;
         ViewList = Players.GetPhotonViewsInChildren();
         PlayerDataList = Players.GetComponentsInChildren<PlayerData>();
     }
@@ -77,9 +72,10 @@ public class NetworkGameManager : Photon.MonoBehaviour {
 	//private void InitializeScripts() { }
 	//private void InitializeRules() { }
 
-    private void AssignOwnership()
+    [PunRPC]
+    private void AssignOwnership(PhotonPlayer[] PlayerList)
     {
-        for (int i = 0; i < ActualRoom.PlayerCount; i++)
+        for (int i = 0; i < PlayerList.Length; i++)
         {
             PhotonPlayer player = PlayerList[i];
             ViewList[i].TransferOwnership(player);
@@ -89,6 +85,7 @@ public class NetworkGameManager : Photon.MonoBehaviour {
         }
     }
 
+    [PunRPC]
     private void BeginGame()
     {
         Players.SetActive(true);

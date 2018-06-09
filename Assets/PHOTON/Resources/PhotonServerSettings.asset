@@ -36,4 +36,10 @@ MonoBehaviour:
   - PunRespawn
   - RequestForPickupItems
   - RequestForPickupTimes
+  - ChangeController
+  - ChangeType
+  - LevelUP
+  - Move
+  - BeginGame
+  - AssignOwnership
   DisableAutoOpenWizard: 1

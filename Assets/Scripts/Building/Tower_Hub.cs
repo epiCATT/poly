@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower_Hub : MonoBehaviour {
+public class Tower_Hub : Photon.MonoBehaviour {
 
 
     #region Declaration
 
     // Static Data
-
+    public Tower_Hub Instance;
 
     // Dynamic Data
 
@@ -28,7 +28,7 @@ public class Tower_Hub : MonoBehaviour {
 
     // AWAKE
     private void Awake() {
-        // InitializeData();
+        InitializeData();
     }
 
     // START
@@ -51,6 +51,7 @@ public class Tower_Hub : MonoBehaviour {
 
     #region Methods
 
+    [PunRPC]
     public void ChangeController(GameObject player)
     {
         bool isLab = (Data.Type == TowerData.BuildingType.Lab);
@@ -73,22 +74,39 @@ public class Tower_Hub : MonoBehaviour {
             FWTrigger.ActualizeController();
     }
 
-    public void ChangeType(TowerData.BuildingType newType)
+    [PunRPC]
+    public void ChangeType(string newType)
     {
-        TBehavior.ChangeType(newType);
+        switch (newType)
+        {
+            case "Generator":
+                TBehavior.ChangeType(TowerData.BuildingType.Generator);
+                break;
+            case "Lab":
+                TBehavior.ChangeType(TowerData.BuildingType.Lab);
+                break;
+            case "Firewall":
+                TBehavior.ChangeType(TowerData.BuildingType.Firewall);
+                break;
+            default:
+                throw new System.ArgumentException("Not a buildingtype");
+        }
+        
     }
 
+    [PunRPC]
     public void LevelUP()
     {
         TBehavior.LevelUP();
     }
 
-    public void Spawn(Transform target)
+    public void Spawn(Vector3 target)
     {
         Spawner.MoveOne(target);
     }
 
-    public void Move(Transform target, float proportion)
+    [PunRPC]
+    public void Move(Vector3 target, float proportion)
     {
         Spawner.Move(target, proportion);
     }
@@ -111,7 +129,9 @@ public class Tower_Hub : MonoBehaviour {
 
     #region Subfunctions
 
-    //private void InitializeData() { }
+    private void InitializeData() {
+        Instance = this;
+    }
 
     private void InitializeScripts()
     {

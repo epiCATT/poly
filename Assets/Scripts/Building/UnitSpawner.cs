@@ -20,7 +20,7 @@ public class UnitSpawner : MonoBehaviour {
     private float unitSpawned;
     private float unitToSpawn;
     private float elapsedTime;
-    private Transform selectedTarget;
+    private Vector3 selectedTarget;
 
     // Subscripts
     private _TowerRules Rules;
@@ -61,7 +61,7 @@ public class UnitSpawner : MonoBehaviour {
 
     #region Methods
 
-    public void MoveOne(Transform target)
+    public void MoveOne(Vector3 target)
     {
         if (Data.Population >= 1)
         {
@@ -70,7 +70,7 @@ public class UnitSpawner : MonoBehaviour {
         }
     }
 
-    public void Move(Transform target, float proportion)
+    public void Move(Vector3 target, float proportion)
     {
         if (!isMoving)
         {
@@ -105,7 +105,7 @@ public class UnitSpawner : MonoBehaviour {
         TimeBetweenSpawn = Rules.TimeBetweenSpawn;
     }
 
-    private void Spawn(Transform target, GameObject unitController)
+    private void Spawn(Vector3 target, GameObject unitController)
     {
         GameObject unit = Instantiate(UnitPrefab, spawnLocation);
         UnitData unitData = unit.GetComponent<UnitData>();
