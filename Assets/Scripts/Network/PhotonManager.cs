@@ -115,6 +115,11 @@ public class PhotonManager : MonoBehaviour {
         UpdatePlayerList();
     }
 
+    void OnPlayerDisconnected()
+    {
+        UpdatePlayerList();
+    }
+
     void OnPhotonPlayerPropertiesChanged()
     {
         UpdatePlayerList();

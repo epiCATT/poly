@@ -12,6 +12,8 @@ public class ClickOnTower : Photon.MonoBehaviour
 
     // Static Data
     public PhotonView View;
+    public GameObject CanvasJoueur;
+    public GameObject CanvasPause;
 
     // Dynamic Data
     private GameObject selectedTower;
@@ -63,7 +65,11 @@ public class ClickOnTower : Photon.MonoBehaviour
     private void InitializeData()
     {
         if (!View.isMine)
+        {
             gameObject.SetActive(false);
+            CanvasJoueur.SetActive(false);
+            CanvasPause.SetActive(false);
+        }
         cameraJoueur = GetComponent<Camera>();
     }
 
@@ -88,7 +94,6 @@ public class ClickOnTower : Photon.MonoBehaviour
 
                 if (hit.transform.tag == "Tower")
                 {
-                    Debug.Log("Raycast hit a Tower");
                     SelectMain(false);
 
                     selectedTower = hit.transform.parent.gameObject;

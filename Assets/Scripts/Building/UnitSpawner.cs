@@ -79,7 +79,6 @@ public class UnitSpawner : MonoBehaviour {
             unitToSpawn = Data.Population * proportion;
             initialController = Data.Controller;
             selectedTarget = target;
-            print("Will move " + unitToSpawn.ToString() + " units.");
         }
     }
 

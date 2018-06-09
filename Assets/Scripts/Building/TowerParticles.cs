@@ -77,7 +77,6 @@ public class TowerParticles : MonoBehaviour {
 
     public void PlayAttaque()
     {
-        Debug.Log("Particules jouées");
         Attaque.Play();
     }
     public void PlaySwitchjoueur()

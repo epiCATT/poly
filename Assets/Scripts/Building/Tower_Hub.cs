@@ -54,6 +54,8 @@ public class Tower_Hub : Photon.MonoBehaviour {
     [PunRPC]
     public void ChangeController(GameObject player)
     {
+        Debug.Log("RPC Method received on " + this.name);
+
         bool isLab = (Data.Type == TowerData.BuildingType.Lab);
 
         if (isLab)
@@ -77,6 +79,8 @@ public class Tower_Hub : Photon.MonoBehaviour {
     [PunRPC]
     public void ChangeType(string newType)
     {
+        Debug.Log("RPC Method received on " + this.name);
+
         switch (newType)
         {
             case "Generator":
@@ -97,6 +101,7 @@ public class Tower_Hub : Photon.MonoBehaviour {
     [PunRPC]
     public void LevelUP()
     {
+        Debug.Log("RPC Method received on " + this.name);
         TBehavior.LevelUP();
     }
 
@@ -108,6 +113,7 @@ public class Tower_Hub : Photon.MonoBehaviour {
     [PunRPC]
     public void Move(Vector3 target, float proportion)
     {
+        Debug.Log("RPC Method received on " + this.name);
         Spawner.Move(target, proportion);
     }
 
