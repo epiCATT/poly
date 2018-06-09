@@ -1196,7 +1196,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Meet the Lab
+  m_Text: 'Meet the FireWall.
+
+
+    The FireWall shoot on enemy units that are in its range.'
 --- !u!222 &968466346
 CanvasRenderer:
   m_ObjectHideFlags: 0

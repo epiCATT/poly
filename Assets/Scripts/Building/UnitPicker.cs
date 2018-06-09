@@ -89,7 +89,7 @@ public class UnitPicker : MonoBehaviour {
                     // Manage cooldown until harmonization
                     Harmonizer.StartCountdown();
                 }
-                
+                Debug.Log("Appel des particules");
                 Particles.PlayAttaque();
                 Destroy(unit.gameObject);
             }

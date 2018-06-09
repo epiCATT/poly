@@ -16,6 +16,8 @@ public class TowerParticles : MonoBehaviour {
 
 
 
+
+
     // Dynamic Data
 
 
@@ -27,13 +29,11 @@ public class TowerParticles : MonoBehaviour {
 
     // AWAKE
     void Awake() {
-        //InitializeData();
     }
 
     // START
     void Start() {
-        //InitializeScripts();
-		//InitializeRules();
+
     }
 
     // UPDATE
@@ -57,7 +57,7 @@ public class TowerParticles : MonoBehaviour {
 
     public void PlayFinished()
     {
-        Finished.Emit(50);
+        Finished.Play();
     }
 
     public void StopFinished()
@@ -77,11 +77,12 @@ public class TowerParticles : MonoBehaviour {
 
     public void PlayAttaque()
     {
-        Attaque.Emit(50);
+        Debug.Log("Particules jouées");
+        Attaque.Play();
     }
     public void PlaySwitchjoueur()
     {
-        Switchjoueur.Emit(500);
+        Switchjoueur.Play();
     }
 
 
